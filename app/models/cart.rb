@@ -1,8 +1,6 @@
-class Item < ApplicationRecord
-    has_many :orders
-    has_many :carts
-    has_many :users, through: :orders
-    has_many :reviews
-    
+class Cart < ApplicationRecord
+    belongs_to :user
+    has_many :items
 
+    
 end

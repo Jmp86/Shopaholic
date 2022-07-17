@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :firstname
       t.string :lastname
       t.string :email
-      t.string :item_reviews, array: true
+      t.string :item_reviews
       t.string :password_digest
       t.boolean :admin, default: false
 

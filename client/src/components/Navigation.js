@@ -1,6 +1,17 @@
-// import {NavLink} from 'react-router-dom'
-// import {UserContext} from "../context/user"
-// import {useContext} from "react"
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+
+import {NavLink} from 'react-router-dom'
+import {UserContext} from "../context/user"
+import {useContext} from "react"
 
 // const style = {
 //     width: "60%",
@@ -12,98 +23,6 @@
 //     fontWeight: "bold",
 //     verticalAlign: "center"
 // }
-
-// const Navigation = () => {
-//     const {user} = useContext(UserContext)
-
-//     return (
-//         <div>
-//             <NavLink
-//             activeStyle={{
-//                 fontWeight: "bolder",
-//                 color: "red"
-//             }}
-//                 exact
-//                 style={style}
-//                 to="/"
-//             >Home</NavLink>
-//             <NavLink
-//             activeStyle={{
-//                 fontWeight: "bolder",
-//                 color: "red"
-//             }}
-//                 exact
-//                 style={style}
-//                 to="/posts"
-//             >Posts</NavLink>
-//             {user ? (
-//                 <>
-//                     <NavLink
-//                     activeStyle={{
-//                         fontWeight: "bolder",
-//                         color: "red"
-//                     }}
-//                         exact
-//                         style={style}
-//                         to="/posts/new"
-//                     >New Post</NavLink>
-//                     <NavLink
-//                     activeStyle={{
-//                         fontWeight: "bolder",
-//                         color: "red"
-//                     }}
-//                         exact
-//                         style={style}
-//                         to="/profile"
-//                     >Profile</NavLink>
-//                     <NavLink
-//                     activeStyle={{
-//                         fontWeight: "bolder",
-//                         color: "red"
-//                     }}
-//                         exact
-//                         style={style}
-//                         to="/signout"
-//                     >Sign Out</NavLink>
-//                 </>
-//                 ) : (
-//                     <>
-//                         <NavLink
-//                         activeStyle={{
-//                             fontWeight: "bolder",
-//                             color: "red"
-//                         }}
-//                             exact
-//                             style={style}
-//                             to="/login"
-//                         >Login</NavLink>
-//                         <NavLink
-//                         activeStyle={{
-//                             fontWeight: "bolder",
-//                             color: "red"
-//                         }}
-//                             exact
-//                             style={style}
-//                             to="/signup"
-//                         >Sign Up</NavLink>
-//                     </>
-//                 )}
-//         </div>
-//     )
-// }
-
-// export default Navigation;
-
-import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -148,27 +67,96 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navigation() {
+    const {user} = useContext(UserContext)
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            SHOPAHOLIC
           </Typography>
+
+           <NavLink
+            activeStyle={{
+                fontWeight: "bolder",
+                color: "red"
+            }}
+                exact
+//                 style={style}
+                to="/"
+            >Home</NavLink>
+             <NavLink
+            activeStyle={{
+                fontWeight: "bolder",
+                color: "red"
+            }}
+                exact
+//                 style={style}
+                to="/posts"
+            >Posts</NavLink>
+                {user ? (
+                <>
+                    <NavLink
+                    activeStyle={{
+                        fontWeight: "bolder",
+                        color: "red"
+                    }}
+                        exact
+//                         style={style}
+                        to="/posts/new"
+                    >New Post</NavLink>
+                    <NavLink
+                    activeStyle={{
+                        fontWeight: "bolder",
+                        color: "red"
+                    }}
+                        exact
+//                         style={style}
+                        to="/profile"
+                    >Profile</NavLink>
+                    <NavLink
+                    activeStyle={{
+                        fontWeight: "bolder",
+                        color: "red"
+                    }}
+                        exact
+//                         style={style}
+                        to="/signout"
+                    >Sign Out</NavLink>
+                </>
+                ) : (
+                    <>
+                        <NavLink
+                        activeStyle={{
+                            fontWeight: "bolder",
+                            color: "red"
+                        }}
+                            exact
+//                             style={style}
+                            to="/login"
+                        >Login</NavLink>
+                        <NavLink
+                        activeStyle={{
+                            fontWeight: "bolder",
+                            color: "red"
+                        }}
+                            exact
+//                             style={style}
+                            to="/signup"
+                        >Sign Up</NavLink>
+                    </>
+                )}
+
+
+
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
