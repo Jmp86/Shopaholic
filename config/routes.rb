@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
-  namespace :api do
-    resources :recipes, only: [:index, :create]
-    post "/signup", to: "users#create"
-    get "/me", to: "users#show"
-    post "/login", to: "sessions#create"
-    delete "/logout", to: "sessions#destroy"
+
+  scope :api do
+    scope :v1 do
+      resources :users
+      resources :items
+      resources :carts
+      resources :orders
+      resources :reviews
+    
+      post "/signup", to: "users#create"
+      get "/me", to: "users#show"
+      post "/login", to: "sessions#create"
+      delete "/logout", to: "sessions#destroy"
+    end
   end
   # all other routes will be load our React application
   # this route definition matches:

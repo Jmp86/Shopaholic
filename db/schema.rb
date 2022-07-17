@@ -10,29 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_193805) do
+ActiveRecord::Schema.define(version: 2022_07_17_030114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "recipes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "title"
-    t.text "instructions"
-    t.integer "minutes_to_complete"
+  create_table "carts", force: :cascade do |t|
+    t.string "items_in_cart", array: true
+    t.float "cart_total"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "item_name"
+    t.string "image"
+    t.float "price"
+    t.integer "rating"
+    t.integer "cart_id"
+    t.integer "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "items_ordered", array: true
+    t.float "order_total"
+    t.date "order_date"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "review"
+    t.integer "rating"
+    t.integer "item_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.string "item_reviews", array: true
     t.string "password_digest"
-    t.string "image_url"
-    t.string "bio"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "recipes", "users"
 end

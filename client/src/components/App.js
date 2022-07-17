@@ -1,39 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import NavBar from "./NavBar";
-import Login from "../pages/Login";
-import RecipeList from "../pages/RecipeList";
-import NewRecipe from "../pages/NewRecipe";
+import './App.css';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import React, { useEffect, useContext } from "react";
+import {UserContext} from "./context/user"
+import Home from './containers/Home'
+import Header from './components/Header';
+import Navigation from './components/Navigation';
+import Notification from './components/Notification';
+import SignInSide from './components/SignInSide';
+import SignUp from './components/SignUp';
 
 function App() {
-  const [user, setUser] = useState(null);
+
+  const {getCurrentUser} = useContext(UserContext)
 
   useEffect(() => {
-    // auto-login
-    fetch("/api/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+      getCurrentUser()
+  }, [])
 
-  if (!user) return <Login onLogin={setUser} />;
 
   return (
-    <>
-      <NavBar user={user} setUser={setUser} />
-      <main>
+    <div className='App'>
+      <Router>
+        <Notification/>
+        <Navigation />
+        <Header slogan="Start Shopping!" storename="Shopaholic"/>
         <Switch>
-          <Route path="/new">
-            <NewRecipe user={user} />
+          <Route path='/' element={<Home/>}/>
+          {/* <Route index path='/items' element={<Home/>}/>
+          <Route index path='/items/:id' element={<Home/>}/>
+          <Route index path='/profile/:id' element={<Home/>}/> */}
+          <Route path="/signup">
+            <SignUp />
           </Route>
-          <Route path="/">
-            <RecipeList />
-          </Route>
+          <Route index path='/login' element={<SignInSide/>}/>
+          {/* <Route index path='/orders' element={<Home/>}/>
+          <Route index path='/orders/:id' element={<Home/>}/> */}
         </Switch>
-      </main>
-    </>
+      </Router>
+    </div>
   );
 }
 
 export default App;
+
