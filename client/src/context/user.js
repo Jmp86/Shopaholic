@@ -17,10 +17,10 @@ function UserProvider({children}) {
                 setUser({...data.data.attributes})
              } else {
                 const errorObj = await resp.json()
-                // setMessage({message: errorObj.error, color: "red"})
+                setMessage({message: errorObj.error, color: "red"})
              }
         } catch (e) {
-            // setMessage({message: "No user logged in", color: "red"})
+            setMessage({message: "No user logged in", color: "red"})
         }
     }, [])
     // setMessage

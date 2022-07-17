@@ -12,6 +12,10 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {UserContext} from '../context/user'
+import {MessageContext} from '../context/message'
+import {useContext, useState} from 'react'
+import {useHistory, Redirect} from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -29,14 +33,28 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const {login, user, setUser} = useContext(UserContext);
+  const {setMessage} = useContext(MessageContext);
+  const history = useHistory()
+  const [userObj, setUserObj] = useState({
+      email: "",
+      password: ""
+  });
+
+  const handleChange = ({target: {name, value}}) => {
+      setUserObj({
+          ...userObj,
+          [name]: value
+      })
+  }
+  const handleSubmit = async (event) => {
+      event.preventDefault();
+      const loginResponse = await login(userObj)
+      if (loginResponse) {
+          history.push("/profile")
+      }
   };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -126,29 +144,5 @@ export default function SignInSide() {
   );
 }
 
-// import {UserContext} from '../context/user'
-// import {MessageContext} from '../context/message'
-// import {useContext, useState} from 'react'
-// import {useHistory, Redirect} from 'react-router-dom'
 
-// const {login, user, setUser} = useContext(UserContext);
-// const {setMessage} = useContext(MessageContext);
-// const history = useHistory()
-// const [userObj, setUserObj] = useState({
-//     email: "",
-//     password: ""
-// });
 
-// const handleChange = ({target: {name, value}}) => {
-//     setUserObj({
-//         ...userObj,
-//         [name]: value
-//     })
-// }
-// const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     const loginResponse = await login(userObj)
-//     if (loginResponse) {
-//         history.push("/profile")
-//     }
-// };
