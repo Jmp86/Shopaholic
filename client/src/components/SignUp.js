@@ -50,13 +50,17 @@ export default function SignUp() {
         })
     }
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const signupResponse = await signup(userObj)
-        if (signupResponse) {
-            history.push("/")
-        }
-  };
+    const handleSubmit = e => {
+      e.preventDefault()
+      if ([userObj.firstname, userObj.lastname, userObj.email, userObj.password, userObj.passwordConfirmation, userObj.username].some(val => val.trim() === "")) {
+          setMessage({message: "Please fill in all information", color: "red"})
+      }
+      const newUserCreated = signup({...userObj, password_confirmation: userObj.passwordConfirmation})
+      if (newUserCreated) {
+          setMessage({message: "User successfully created!", color: "green"})
+          history.push("/profile")
+      }
+    }
 
   return (
     <ThemeProvider theme={theme}>

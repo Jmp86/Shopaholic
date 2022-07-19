@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-    # skip_before_action :admin?, only: [:index, :show, :create]
+    skip_before_action :admin?, only: [:index, :show, :create]
     before_action :find_order, only: [:show, :update, :destroy]
 
     def index

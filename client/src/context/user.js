@@ -1,5 +1,4 @@
 import React, {useState, useContext, useEffect, useCallback} from "react"
-import {useHistory} from "react-router-dom"
 import {MessageContext} from "../context/message"
 
 
@@ -14,10 +13,10 @@ function UserProvider({children}) {
             const resp = await fetch("http://localhost:3000/api/v1/me")
              if (resp.status === 200) {
                 const data = await resp.json()
-                setUser({...data.data.attributes})
+                setUser({data})
              } else {
-                const errorObj = await resp.json()
-                setMessage({message: errorObj.error, color: "red"})
+                // const errorObj = await resp.json()
+                // setMessage({message: errorObj.error, color: "red"})
              }
         } catch (e) {
             setMessage({message: "No user logged in", color: "red"})
@@ -37,7 +36,6 @@ function UserProvider({children}) {
             })
             if (resp.status === 202) {
                 const data = await resp.json()
-                console.log(data)
                 setUser({data})
                 return true
             } else {
@@ -63,7 +61,7 @@ function UserProvider({children}) {
             })
             if (resp.status === 201) {
                 const data = await resp.json()
-                setUser({...data.data.attributes})
+                setUser({data})
             } else {
                 const errorObj = await resp.json()
                 setMessage({message: errorObj.error, color: "red"})
@@ -73,7 +71,7 @@ function UserProvider({children}) {
             setMessage({message: e.message, color: "red"})
         }
     }
-    const signout = async () => { 
+    const logout = async () => { 
         try {
             const resp = await fetch("http://localhost:3000/api/v1/logout", {
                 method: "DELETE"
@@ -88,7 +86,7 @@ function UserProvider({children}) {
     }
 
     return (
-        <UserContext.Provider value={{user, setUser,  getCurrentUser, login, signup, signout}}>
+        <UserContext.Provider value={{user, setUser,  getCurrentUser, login, signup, logout}}>
             {children}
         </UserContext.Provider>
     )

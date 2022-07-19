@@ -1,6 +1,6 @@
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import {UserContext} from "../context/user"
 import Home from '../containers/Home'
 import ShopByCategory from "../containers/ShopByCategory";
@@ -9,12 +9,16 @@ import Notification from './Notification';
 import Login from './Login';
 import SignUp from './SignUp';
 import Profile from "./Profile";
+import Logout from "./Logout";
 
 
 function App() {
 
   const {getCurrentUser} = useContext(UserContext)
 
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
 
   return (
     <div className='App'>
@@ -39,6 +43,9 @@ function App() {
           </Route>
           <Route path="/">
             <Home />
+          </Route>
+          <Route path="/logout">
+            <Logout />
           </Route>
           {/* <Route index path='/orders' element={<Home/>}/>
           <Route index path='/orders/:id' element={<Home/>}/> */}

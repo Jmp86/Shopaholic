@@ -15,7 +15,7 @@ import {useContext} from "react"
 
 const style = {
     fontSize: "20px",
-    width: "17%",
+    width: "12%",
     margin: "auto",
     padding: "1rem",
     textDecoration: "none",
@@ -73,16 +73,25 @@ export default function Navigation() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Welcome 
-          </Typography>
-
+            {/* {user ? (
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              >
+                Welcome {user.data.firstname}!
+              </Typography>
+            ) : ( */}
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              >
+              Welcome to Shopaholic!
+           </Typography>
+            {/* )}          */}
            <NavLink
             activeStyle={{
                 fontWeight: "bolder",
@@ -119,8 +128,8 @@ export default function Navigation() {
                     }}
                         exact
                         style={style}
-                        to="/signout"
-                    >Sign Out</NavLink>
+                        to="/logout"
+                    >Log Out</NavLink>
                 </>
                 ) : (
                     <>
@@ -132,7 +141,7 @@ export default function Navigation() {
                             exact
                             style={style}
                             to="/login"
-                        >Login</NavLink>
+                        >Log In</NavLink>
                         <NavLink
                         activeStyle={{
                             fontWeight: "bolder",

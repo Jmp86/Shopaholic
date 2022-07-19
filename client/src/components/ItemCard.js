@@ -12,8 +12,8 @@ const ItemCard = () => {
           <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
+            image='https://source.unsplash.com/random'
+            alt="random img"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">

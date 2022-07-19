@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    # skip_before_action :authorized!, only: [:create]
+    skip_before_action :authorized!, only: [:create]
     # skip_before_action :admin?, only: [:create, :show, :update, :destroy]
 
     def index
@@ -13,17 +13,13 @@ class UsersController < ApplicationController
     end
 
     def show
-        if @current_user
-          render json: user, status: :created
-        else
-          no_route
-        end 
+        render json: @current_user, status: :ok
     end
 
     def update
             user = User.find_by(id: params[:id])
             user.update!(user_params)
-            render json: user, status: :created
+            render json: user, status: :ok
     end
 
     def destroy

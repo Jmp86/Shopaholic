@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    # skip_before_action :authorized!
+    skip_before_action :authorized!
     # skip_before_action :admin?
 
     def create
@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        # user = User.find_by(id: session[:user_id])
         session.delete :user_id
         head :no_content
     end

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :no_route
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
 
-  # before_action :authorized!
+  before_action :authorized!
 
   private
 

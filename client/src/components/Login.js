@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {UserContext} from '../context/user'
 import {MessageContext} from '../context/message'
 import {useContext, useState} from 'react'
-import {useHistory, Redirect} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -33,7 +33,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-  const {login, user, setUser} = useContext(UserContext);
+  const {user, login} = useContext(UserContext);
   const {setMessage} = useContext(MessageContext);
   const [userObj, setUserObj] = useState({
       email: "",
@@ -52,8 +52,9 @@ export default function Login() {
       e.preventDefault();
       const loginResponse = await login(userObj)
       if (loginResponse) {
-          history.push("/")
+          history.push("/shop")
       }
+
   };
 
   return (
