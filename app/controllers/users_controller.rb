@@ -13,7 +13,9 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: @current_user, status: :ok
+        user = User.find_by(id: session[:user_id])
+        byebug
+        render json: user, status: :ok
     end
 
     def update

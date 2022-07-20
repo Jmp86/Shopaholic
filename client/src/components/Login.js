@@ -13,7 +13,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {UserContext} from '../context/user'
-import {MessageContext} from '../context/message'
 import {useContext, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 
@@ -33,8 +32,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-  const {user, login} = useContext(UserContext);
-  const {setMessage} = useContext(MessageContext);
+  const {login} = useContext(UserContext);
   const [userObj, setUserObj] = useState({
       email: "",
       password: ""

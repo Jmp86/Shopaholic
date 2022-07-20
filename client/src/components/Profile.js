@@ -8,7 +8,9 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
-
+import Title from './Title';
+import {UserContext} from "../context/user"
+import {useContext} from "react"
 
 
 
@@ -33,12 +35,12 @@ function Copyright(props) {
 const mdTheme = createTheme();
 
 function Profile() {
+    const {user} = useContext(UserContext)
 
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-
         <Box
           component="main"
           sx={{
@@ -64,7 +66,7 @@ function Profile() {
                     height: 240,
                   }}
                 >
-                 
+                 <Title>Edit your account information</Title>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}

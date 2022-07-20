@@ -31,7 +31,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-    const {signup, user, setUser} = useContext(UserContext);
+    const {signup} = useContext(UserContext);
     const {setMessage} = useContext(MessageContext);
     const [userObj, setUserObj] = useState({
         firstname: "",
@@ -52,14 +52,19 @@ export default function SignUp() {
 
     const handleSubmit = e => {
       e.preventDefault()
-      if ([userObj.firstname, userObj.lastname, userObj.email, userObj.password, userObj.passwordConfirmation, userObj.username].some(val => val.trim() === "")) {
+      if ([userObj.firstname, userObj.lastname, userObj.email, userObj.password, userObj.password_confirmation].some(val => val.trim() === "")) {
           setMessage({message: "Please fill in all information", color: "red"})
       }
       const newUserCreated = signup({...userObj, password_confirmation: userObj.passwordConfirmation})
       if (newUserCreated) {
           setMessage({message: "User successfully created!", color: "green"})
-          history.push("/profile")
+          history.push("/shop")
       }
+      // const userExists = signup(resp.status = 422)
+      // if (resp.status === 422) {
+      //   <Redirect to="/login"/>
+      //   setMessage({message: "User already exists!", color: "yellow"})
+      // }
     }
 
   return (

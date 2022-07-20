@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     getCurrentUser()
-  }, [])
+  }, [getCurrentUser])
 
   return (
     <div className='App'>
@@ -41,19 +41,19 @@ function App() {
           <Route path="/signup">
             <SignUp />
           </Route>
-          <Route path="/">
-            <Home />
-          </Route>
           <Route path="/logout">
             <Logout />
           </Route>
-          {/* <Route index path='/orders' element={<Home/>}/>
-          <Route index path='/orders/:id' element={<Home/>}/> */}
+          <Route path="/">
+            <Home />
+          </Route>
         </Switch>
       </Router>
     </div>
   );
 }
 
+// {/* <Route index path='/orders' element={<Home/>}/>
+// <Route index path='/orders/:id' element={<Home/>}/> */}
 export default App;
 

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect, useCallback} from "react"
+import React, {useState, useContext, useCallback} from "react"
 import {MessageContext} from "../context/message"
 
 
@@ -11,12 +11,12 @@ function UserProvider({children}) {
     const getCurrentUser = useCallback(async () => { 
         try {
             const resp = await fetch("http://localhost:3000/api/v1/me")
-             if (resp.status === 200) {
+             if (resp.status === 201) {
                 const data = await resp.json()
                 setUser({data})
              } else {
-                // const errorObj = await resp.json()
-                // setMessage({message: errorObj.error, color: "red"})
+                const errorObj = await resp.json()
+                setMessage({message: errorObj.error, color: "red"})
              }
         } catch (e) {
             setMessage({message: "No user logged in", color: "red"})
@@ -34,13 +34,12 @@ function UserProvider({children}) {
                 },
                 body: JSON.stringify(userInfo)
             })
-            if (resp.status === 202) {
+            if (resp.status === 201) {
                 const data = await resp.json()
                 setUser({data})
                 return true
             } else {
-                const errorObj = await resp.json()
-                setMessage({message: errorObj.error, color: "red"})
+                setMessage({message: "Invalid Email or Password", color: "red"})
                 return false
             }
 
