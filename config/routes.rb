@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   scope :api do
     scope :v1 do
-      resources :users
+      resources :user, only: [:update, :destroy]
       resources :items
       resources :carts
       resources :orders

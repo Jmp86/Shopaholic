@@ -12,6 +12,7 @@ import {UserContext} from "../context/user"
 import {useContext} from "react"
 
 const style = {
+    align: "center",
     fontSize: "20px",
     width: "12%",
     margin: "auto",

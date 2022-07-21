@@ -1,20 +1,26 @@
 import React, {useState, useContext, useCallback} from "react"
 import {MessageContext} from "../context/message"
-
+import {useHistory, Redirect} from 'react-router-dom'
 
 const UserContext = React.createContext()
+
 
 function UserProvider({children}) {
     const [user, setUser] = useState(null);
     const {setMessage} = useContext(MessageContext)
 
+    const history = useHistory()
+
     const getCurrentUser = useCallback(async () => { 
         try {
             const resp = await fetch("http://localhost:3000/api/v1/me")
-             if (resp.status === 201) {
-                const data = await resp.json()
+             if (resp.status === 200) {
+                const data = await resp.json() 
                 setUser({data})
-             } else {
+             } else if (resp.status === 401) {
+                history.push("/login")
+                setMessage({message: "No user logged in", color: "red"})
+            } else {
                 const errorObj = await resp.json()
                 setMessage({message: errorObj.error, color: "red"})
              }
@@ -34,7 +40,7 @@ function UserProvider({children}) {
                 },
                 body: JSON.stringify(userInfo)
             })
-            if (resp.status === 201) {
+            if (resp.status === 202) {
                 const data = await resp.json()
                 setUser({data})
                 return true

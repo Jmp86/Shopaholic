@@ -13,15 +13,14 @@ class UsersController < ApplicationController
     end
 
     def show
-        user = User.find_by(id: session[:user_id])
         byebug
-        render json: user, status: :ok
+        render json: @current_user, status: :ok
     end
 
     def update
-            user = User.find_by(id: params[:id])
-            user.update!(user_params)
-            render json: user, status: :ok
+        user = User.find_by(id: params[:id])
+        user.update!(user_params)
+        render json: user, status: :ok
     end
 
     def destroy
