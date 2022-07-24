@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
+import { PencilOutline } from 'mdi-material-ui'
 import Title from './Title';
 import {UserContext} from "../context/user"
 import {useContext} from "react"
@@ -66,7 +67,8 @@ function Profile() {
                     height: 240,
                   }}
                 >
-                 <Title>Edit your account information</Title>
+                 <Title>Edit your account information   <PencilOutline/></Title>
+                 
                 </Paper>
               </Grid>
               {/* Recent Deposits */}

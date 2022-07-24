@@ -1,0 +1,29 @@
+.App {
+    text-align: center;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
+
+  .home{
+    min-height: 550px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color:black;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 65px;
+    margin: 10rem 10rem 0rem;
+    text-align: center; 
+    color:whitesmoke;
+  }
+
+  h3 {
+    font-size: 45px;
+    text-align: center; 
+    color:whitesmoke;
+  }

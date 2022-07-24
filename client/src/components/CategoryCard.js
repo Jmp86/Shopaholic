@@ -1,45 +1,42 @@
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
-import {ItemContext} from '../context/item'
-import {useContext, useState} from 'react'
 
-const CategoryCard = () => {
-    const {getCategories} = useContext(ItemContext);
-    const [categoryObj, setCategoryObj] = useState({
-        email: "",
-        password: ""
-    });
+
+const CategoryCard = ({category}) => {
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image='https://source.unsplash.com/random'
-            alt="random img"
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={
+              <React.Fragment>
+                <Typography
+                  sx={{ display: 'inline' }}
+                  component="span"
+                  variant="body2"
+                  color="text.primary"
+                >
+                  {category.name}
+                </Typography>
+                {/* {" — I'll be in your neighborhood doing errands this…"} */}
+              </React.Fragment>
+            }
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-        </CardActions>
-      </Card>
+        </ListItem>
+        <Divider variant="inset" component="li" />
+      </List>
     );
+  
+
+  
 }
 
 export default CategoryCard;

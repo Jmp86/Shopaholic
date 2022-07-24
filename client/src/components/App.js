@@ -1,4 +1,4 @@
-
+import '../App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import React, { useEffect, useContext } from "react";
 import {UserContext} from "../context/user"
