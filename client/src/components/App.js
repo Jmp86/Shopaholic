@@ -12,7 +12,7 @@ import Profile from './Profile';
 import Logout from './Logout';
 import Cart from '../containers/Cart'
 import ShopItems from '../containers/ShopItems'
-
+import ItemProfile from './ItemProfile'
 
 function App() {
 
@@ -28,6 +28,9 @@ function App() {
         <Notification/>
         <Navigation />
         <Switch>
+        {/* <Route path="/item/:id">
+            <ItemProfile />
+          </Route> */}
         <Route path="/cart/:id">
             <Cart />
           </Route>
