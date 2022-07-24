@@ -72,7 +72,7 @@ export default function Navigation() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-            {/* {user ? (
+            {user ? (
               <Typography
                 variant="h6"
                 noWrap
@@ -81,7 +81,7 @@ export default function Navigation() {
               >
                 Welcome {user.data.firstname}!
               </Typography>
-            ) : ( */}
+            ) : (
             <Typography
               variant="h6"
               noWrap
@@ -90,7 +90,7 @@ export default function Navigation() {
               >
               Welcome to Shopaholic!
            </Typography>
-            {/* )}          */}
+            )}   
            <NavLink
             activeStyle={{
                 fontWeight: "bolder",

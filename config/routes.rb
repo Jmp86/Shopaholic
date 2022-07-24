@@ -2,16 +2,17 @@ Rails.application.routes.draw do
 
   scope :api do
     scope :v1 do
+      post "/signup", to: "users#create"
+      get "/me", to: "users#show"
+      post "/login", to: "sessions#create"
+      delete "/logout", to: "sessions#destroy"
+      
       resources :user, only: [:update, :destroy]
       resources :items
       resources :carts
       resources :orders
       resources :reviews
     
-      post "/signup", to: "users#create"
-      get "/me", to: "users#show"
-      post "/login", to: "sessions#create"
-      delete "/logout", to: "sessions#destroy"
     end
   end
   # all other routes will be load our React application

@@ -1,12 +1,11 @@
 import React from 'react';
-import ItemCard from '../components/ItemCard';
-
+import CategoryCard from '../components/CategoryCard';
 
 const ShopByCategory = () => {
     return (
         <div>
             
-            <ItemCard/>
+            <CategoryCard/>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized!, only: [:create]
+    skip_before_action :authorize, only: [:create]
     # skip_before_action :admin?, only: [:create, :show, :update, :destroy]
 
     def index
@@ -13,8 +13,8 @@ class UsersController < ApplicationController
     end
 
     def show
-        byebug
-        render json: @current_user, status: :ok
+
+        render json: current_user, status: :ok
     end
 
     def update

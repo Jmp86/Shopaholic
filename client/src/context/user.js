@@ -1,4 +1,4 @@
-import React, {useState, useContext, useCallback} from "react"
+import React, {useState, useContext, useEffect, useCallback} from "react"
 import {MessageContext} from "../context/message"
 import {useHistory, Redirect} from 'react-router-dom'
 
@@ -13,17 +13,11 @@ function UserProvider({children}) {
 
     const getCurrentUser = useCallback(async () => { 
         try {
-            const resp = await fetch("http://localhost:3000/api/v1/me")
+            const resp = await fetch("/api/v1/me")
              if (resp.status === 200) {
                 const data = await resp.json() 
                 setUser({data})
-             } else if (resp.status === 401) {
-                history.push("/login")
-                setMessage({message: "No user logged in", color: "red"})
-            } else {
-                const errorObj = await resp.json()
-                setMessage({message: errorObj.error, color: "red"})
-             }
+             } 
         } catch (e) {
             setMessage({message: "No user logged in", color: "red"})
         }
@@ -32,7 +26,7 @@ function UserProvider({children}) {
 
     const login = async (userInfo) => {
         try {
-            const resp = await fetch("http://localhost:3000/api/v1/login", {
+            const resp = await fetch("/api/v1/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,7 +42,6 @@ function UserProvider({children}) {
                 setMessage({message: "Invalid Email or Password", color: "red"})
                 return false
             }
-
         } catch(e) {
             setMessage({message: e.message, color: "red"})
         }
@@ -56,7 +49,7 @@ function UserProvider({children}) {
 
     const signup = async (userInfo) => {
         try {
-            const resp = await fetch("http://localhost:3000/api/v1/signup", {
+            const resp = await fetch("/api/v1/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -78,7 +71,7 @@ function UserProvider({children}) {
     }
     const logout = async () => { 
         try {
-            const resp = await fetch("http://localhost:3000/api/v1/logout", {
+            const resp = await fetch("/api/v1/logout", {
                 method: "DELETE"
             })
             setMessage({messge: "You have been logged out", color: "green"})
@@ -91,7 +84,7 @@ function UserProvider({children}) {
     }
 
     return (
-        <UserContext.Provider value={{user, setUser,  getCurrentUser, login, signup, logout}}>
+        <UserContext.Provider value={{user, setUser, getCurrentUser, login, signup, logout}}>
             {children}
         </UserContext.Provider>
     )

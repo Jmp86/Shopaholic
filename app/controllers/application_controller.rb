@@ -4,21 +4,21 @@ class ApplicationController < ActionController::API
 
   rescue_from ActiveRecord::RecordNotFound, with: :no_route
   rescue_from ActiveRecord::RecordInvalid, with: :invalid_record
-
-  before_action :authorized!
+  
+  before_action :authorize
 
 #   wrap_parameters format: []
 
   private
 
+  before_action :current_user
+
   def current_user 
-      @current_user = User.find(session[:user_id]) if session[:user_id]
-    #   byebug
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def authorized!
-    #   byebug
-      no_route unless current_user
+  def authorize
+    no_route unless current_user
   end
 
   # def admin?
