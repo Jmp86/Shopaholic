@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect, useCallback} from "react"
 import {MessageContext} from "../context/message"
 import {useHistory, Redirect} from 'react-router-dom'
-import {categories} from '../config.js';
+import {API} from '../config.js';
 
 const ItemContext = React.createContext()
 
@@ -10,9 +10,22 @@ function ItemProvider({children}) {
     const [item, setItem] = useState([]);
     const {setMessage} = useContext(MessageContext)
 
-    const getCategories = useCallback(async () => { 
+    const getItem = useCallback(async (productID) => { 
         try {
-            const resp = await fetch('https://amazon24.p.rapidapi.com/api/category?country=US', categories)
+            const resp = await fetch('https://amazon24.p.rapidapi.com/api/product/' + productID + '?country=US', API)
+             if (resp.status === 200) {
+                const data = await resp.json() 
+                console.log(data)
+                setItem({data})
+             } 
+        } catch (e) {
+            setMessage({message: "No items to display", color: "red"})
+        }
+    }, [setMessage])
+
+    const getItemsByCategory = useCallback(async (category) => { 
+        try {
+            const resp = await fetch('https://amazon24.p.rapidapi.com/api/product?categoryID=' + category + '&country=US&page=1', API)
              if (resp.status === 200) {
                 const data = await resp.json() 
                 console.log(data)
@@ -24,7 +37,7 @@ function ItemProvider({children}) {
     }, [setMessage])
 
     return (
-        <ItemContext.Provider value={{item, setItem, getCategories}}>
+        <ItemContext.Provider value={{item, setItem, getItem, getItemsByCategory}}>
             {children}
         </ItemContext.Provider>
     )

@@ -129,7 +129,12 @@ export default function Navigation() {
                         style={style}
                         to="/logout"
                     >Log Out</NavLink>
-                    <CartOutline/>
+                    {/* <Navlink
+                        exact
+                        to={"/cart/" + cart.data.user_id}
+                    > */}
+                      <CartOutline/>
+                      {/* </Navlink> */}
                 </>
                 ) : (
                     <>

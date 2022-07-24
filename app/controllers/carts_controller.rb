@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
     # skip_before_action :admin?
-    before_action :find_cart, only: [:show, :update, :destroy]
+    before_action :find_cart, only: [:show, :update]
 
     def show
         render json: find_cart
@@ -12,14 +12,14 @@ class CartsController < ApplicationController
     end
 
     def update
-        @cart&.update!(cart_params)
-        render json: find_cart, status: :created
+        if current_user.cart.include?(@cart)
+            @cart&.update!(cart_params)
+            render json: cart
+        else
+            no_route
+        end
     end
 
-    def destroy
-        @cart&.destroy
-        head :no_content
-    end
 
 
     private

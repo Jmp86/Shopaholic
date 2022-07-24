@@ -5,7 +5,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
-const ItemCard = () => {
+const ItemCard = ({item}) => {
+
+  //   const handleClick = () => {
+//     history.push("/item/" + item.id);
+// }
+
     return (
         <Card sx={{ maxWidth: 345 }}>
         <CardActionArea>

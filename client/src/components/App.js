@@ -1,15 +1,17 @@
 import '../App.css';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import React, { useEffect, useContext } from "react";
-import {UserContext} from "../context/user"
-import Home from '../containers/Home'
-import ShopByCategory from "../containers/ShopByCategory";
+import {UserContext} from '../context/user';
+import Home from './Home';
+import ShopByCategory from '../containers/ShopByCategory';
 import Navigation from './Navigation';
 import Notification from './Notification';
 import Login from './Login';
 import SignUp from './SignUp';
-import Profile from "./Profile";
-import Logout from "./Logout";
+import Profile from './Profile';
+import Logout from './Logout';
+import Cart from '../containers/Cart'
+import ShopItems from '../containers/ShopItems'
 
 
 function App() {
@@ -26,12 +28,15 @@ function App() {
         <Notification/>
         <Navigation />
         <Switch>
+        <Route path="/cart/:id">
+            <Cart />
+          </Route>
           <Route path="/profile/:id">
             <Profile />
           </Route>
-          {/* <Route path="/item/:id">
-            <ShopByCategory />
-          </Route> */}
+          <Route path="/category/:id">
+            <ShopItems />
+          </Route>
         <Route path="/shop">
             <ShopByCategory />
           </Route>
