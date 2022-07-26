@@ -17,12 +17,12 @@ const ItemCard = ({item}) => {
           <CardMedia
             component="img"
             height="140"
-            image='https://source.unsplash.com/random'
+            image={item.product_main_image_url}
             alt="random img"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {item.docs[0].product_name}
+              {item.product_name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Lizards are a widespread group of squamate reptiles, with over 6,000

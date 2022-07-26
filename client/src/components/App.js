@@ -37,7 +37,7 @@ function App() {
           <Route path="/profile/:id">
             <Profile />
           </Route>
-          <Route path="/category/:id">
+          <Route path="/category/:category">
             <ShopItems />
           </Route>
         <Route path="/shop">

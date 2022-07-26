@@ -23,12 +23,11 @@ function ItemProvider({children}) {
         }
     }, [setMessage])
 
-    const getItemsByCategory = useCallback(async (category) => { 
+    const getBestSellers = useCallback(async (category) => { 
         try {
-            const resp = await fetch('https://amazon24.p.rapidapi.com/api/product?categoryID=' + category + '&country=US&page=1', API)
+            const resp = await fetch('https://amazon24.p.rapidapi.com/api/bsr/' + category + '?page=1', API)
              if (resp.status === 200) {
                 const data = await resp.json() 
-                console.log(data)
                 setItem({data})
              } 
         } catch (e) {
@@ -37,7 +36,7 @@ function ItemProvider({children}) {
     }, [setMessage])
 
     return (
-        <ItemContext.Provider value={{item, setItem, getItem, getItemsByCategory}}>
+        <ItemContext.Provider value={{item, setItem, getItem, getBestSellers}}>
             {children}
         </ItemContext.Provider>
     )

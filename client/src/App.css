@@ -27,3 +27,8 @@
     text-align: center; 
     color:whitesmoke;
   }
+  .select-img:hover {
+    background-color: whitesmoke;
+    border: black solid 1px;
+    color: black;
+  } 
