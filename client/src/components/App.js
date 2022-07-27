@@ -1,6 +1,6 @@
 import '../App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import React, { useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {UserContext} from '../context/user';
 import Home from './Home';
 import ShopByCategory from '../containers/ShopByCategory';
@@ -15,6 +15,7 @@ import ShopItems from '../containers/ShopItems'
 import ItemProfile from './ItemProfile'
 
 function App() {
+  const [isLoading, setLoading] = useState(true)
 
   const {getCurrentUser} = useContext(UserContext)
 
@@ -38,7 +39,7 @@ function App() {
             <Profile />
           </Route>
           <Route path="/category/:category">
-            <ShopItems />
+            <ShopItems setLoading={setLoading} isLoading={isLoading}/>
           </Route>
         <Route path="/shop">
             <ShopByCategory />

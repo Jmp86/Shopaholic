@@ -3,9 +3,10 @@ import ItemCard from '../components/ItemCard';
 import {ItemContext} from "../context/item";
 import {useParams} from 'react-router-dom';
 import {API} from '../config'
+import Loader from '../components/Loader'
 
-const ShopItems = () => {
-    const {category} = useParams()
+const ShopItems = ({setLoading, isLoading}) => {
+    const {category} = useParams();
     const {items} = useContext(ItemContext);
     const [itemList, setItemList] = useState([]);
 
@@ -17,6 +18,8 @@ const ShopItems = () => {
                     resp.json()
                     .then(items => setItemList(items))
                 }
+                setLoading(false)
+                console.log(items)
                 //  else {
                 //     resp.json()
                 //     .then(errorObj => handleError(errorObj.error))
@@ -24,7 +27,7 @@ const ShopItems = () => {
             })
             // .catch(error => handleError(error))
         }
-    }, [category, items])
+    }, [category, setLoading, items])
 
 
     const finalItems = items ? items : itemList
@@ -32,10 +35,12 @@ const ShopItems = () => {
     
  
     console.log(items)
-    return (
-        <div>   
+    return isLoading ? (
+        <Loader/>
+       ) : (
+        <div className ='table'>    
             {renderItems}
-        </div>
+       </div> 
     );
 }
 

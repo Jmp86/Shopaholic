@@ -26,15 +26,15 @@ function CategoryProvider({children}) {
     const categoryData = [
         {
           id: 1,
-          img: 'https://media.istockphoto.com/photos/set-of-contemporary-house-appliances-isolated-on-white-picture-id1174598609?k=20&m=1174598609&s=612x612&w=0&h=c5rP2tqv0Uck6zm21hBYhEyVy9EBAA7C5VGI4sgfmzo=',
+          img: 'https://imageio.forbes.com/specials-images/imageserve/615b7a2d10f14c6d90c57d56/Small-appliances-on-a-kitchen-countertop-/960x0.jpg?format=jpg&width=960',
           title: 'Appliances',
           category: 'appliances',
         },
         {
           id: 2,
-          img: 'https://i5.walmartimages.com/asr/89423986-7678-471d-9b08-f7aa4569f6f3.27b8f54d62fc40f47b5e6b1cea4f4d1a.jpeg',
-          title: "Electronics",
-          category: 'electronics',
+          img: 'https://expertreviews.b-cdn.net/sites/expertreviews/files/styles/er_main_wide/public/2022/01/refurbished_tvs_-_box_lg.jpg?itok=sHYbRa8I',
+          title: "TV",
+          category: 'tv',
         },
         {
           id: 3,

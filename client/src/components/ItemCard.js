@@ -12,11 +12,12 @@ const ItemCard = ({item}) => {
 // }
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+      
+        <Card sx={{ maxWidth: 300 }}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="250"
             image={item.product_main_image_url}
             alt="random img"
           />
@@ -25,14 +26,13 @@ const ItemCard = ({item}) => {
               {item.product_name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
+              {item.product_title}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
+            {item.reviews}
           </Button>
         </CardActions>
       </Card>

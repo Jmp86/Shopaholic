@@ -1,50 +1,43 @@
+import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import IconButton from '@mui/material/IconButton';
 import {useHistory} from 'react-router-dom'
 import React, {useState, useContext} from "react"
 import {ItemContext} from '../context/item'
-
+import {CategoryContext} from '../context/category'
 
 
 
 const CategoryCard = ({ category }) => {
   const {getBestSellers} = useContext(ItemContext);
+  const {categoryData} = useContext(CategoryContext);
   const history = useHistory()
 
 
 
-  const handleClick = () => {
-    getBestSellers(category.category)
-    history.push('/category/' + category.category)
+  const handleClick = (cat) => {
+    getBestSellers(cat)
+    history.push('/category/' + cat)
   }
 
     return (
-        <ImageList sx={{ width: 'auto', height: 800 }}>
-        <ImageListItem key="Subheader" cols={2}>
-        </ImageListItem>
-          <ImageListItem key={category.id}>
-            <img className='select-img'
-              onClick={handleClick}
-              src={`${category.img}`}
-              srcSet={`${category.img}`}
-              alt={category.title}
+      <Box sx={{ width: 'auto', height: 'auto', overflowY: 'scroll' }}>
+      <ImageList variant="masonry" cols={3} gap={8}>
+        {categoryData.map((cat) => (
+          <ImageListItem key={cat.id}>
+            <img
+              onClick={() => handleClick(cat.category)}
+              src={`${cat.img}?w=248&fit=crop&auto=format`}
+              srcSet={`${cat.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={cat.title}
               loading="lazy"
             />
-            <ImageListItemBar
-              title={category.title}
-              actionIcon={
-                <IconButton
-                  sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                  aria-label={`info about ${category.title}`}
-                >
-                
-                </IconButton>
-              }
-            />
+            <ImageListItemBar position="below" title={cat.title} />
           </ImageListItem>
+        ))}
       </ImageList>
+    </Box>
     );
   }
 

@@ -31,4 +31,10 @@
     background-color: whitesmoke;
     border: black solid 1px;
     color: black;
+    cursor: pointer;
   } 
+
+  .table div{
+  display: inline-block;
+  }
+

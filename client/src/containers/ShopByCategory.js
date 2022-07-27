@@ -10,9 +10,9 @@ const ShopByCategory = () => {
  
 
     return (
-        <div>
+        <div className='table'>
             <h2>Select a category to begin shopping</h2>
-            {categoryData ? categoryData.map(cat => <CategoryCard key={cat.id} category={cat}/>) : null}
+            <CategoryCard/>
         </div>
     );
 }
