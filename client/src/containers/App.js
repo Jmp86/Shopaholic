@@ -12,7 +12,7 @@ import Profile from '../components/Profile';
 import Logout from '../components/Logout';
 import Cart from './Cart'
 import ShopItems from './ShopItems'
-// import ItemProfile from '../components/ItemProfile'
+import ItemProfile from '../components/ItemProfile'
 
 
 function App() {
@@ -30,9 +30,9 @@ function App() {
         <Notification/>
         <Navigation />
         <Switch>
-        {/* <Route path="/item/:id">
-            <ItemProfile />
-          </Route> */}
+        <Route path="/item/:id">
+            <ItemProfile setLoading={setLoading} isLoading={isLoading}/>
+          </Route>
         <Route path="/cart/:id">
             <Cart />
           </Route>

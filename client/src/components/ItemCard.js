@@ -4,7 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
-import Button from './Button'
 import {useHistory} from 'react-router-dom'
 import {ItemContext} from '../context/item'
 import { useContext } from 'react';
@@ -14,9 +13,9 @@ const ItemCard = ({item}) => {
   const history = useHistory()
 
     const handleClick = () => {
-      // console.log(item)
+      console.log(item)
     getItem(item.product_id)  
-    history.push("/item/" + item.id);
+    history.push("/item/" + item.product_id);
 }
 
     return (
@@ -40,9 +39,6 @@ const ItemCard = ({item}) => {
         </CardActionArea>
         <CardActions>
             {item.reviews}
-          <Button size="small" >
-            Add to Cart
-          </Button>
         </CardActions>
       </Card>
     );

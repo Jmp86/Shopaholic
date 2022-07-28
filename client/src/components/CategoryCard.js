@@ -25,7 +25,7 @@ const CategoryCard = ({ category }) => {
       <Box sx={{ width: 'auto', height: 'auto', overflowY: 'scroll' }}>
       <ImageList variant="masonry" cols={3} gap={8}>
         {categoryData.map((cat) => (
-          <ImageListItem key={cat.id}>
+          <ImageListItem key={cat.id} className="categoryImg">
             <img
               onClick={() => handleClick(cat.category)}
               src={`${cat.img}?w=248&fit=crop&auto=format`}

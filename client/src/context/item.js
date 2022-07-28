@@ -31,7 +31,7 @@ function ItemProvider({children}) {
                 .then(data => {
                     setItem({data})
                    
-                console.log(data)
+                // console.log(data)
             })
         //         } catch  {
         //     setMessage({message: "No items to display", color: "red"})
