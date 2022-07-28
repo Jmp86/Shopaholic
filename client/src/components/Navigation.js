@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { CartOutline } from 'mdi-material-ui'
+import {CartOutline} from 'mdi-material-ui'
 import {NavLink} from 'react-router-dom'
 import {UserContext} from "../context/user"
 import {useContext} from "react"
@@ -129,12 +129,11 @@ export default function Navigation() {
                         style={style}
                         to="/logout"
                     >Log Out</NavLink>
-                    {/* <Navlink
+                    <NavLink
                         exact
-                        to={"/cart/" + cart.data.user_id}
-                    > */}
-                      <CartOutline/>
-                      {/* </Navlink> */}
+                        to={"/cart/" + user.data.cart.user_id}
+                    ><CartOutline/>
+                    </NavLink>
                 </>
                 ) : (
                     <>

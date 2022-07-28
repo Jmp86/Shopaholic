@@ -2,6 +2,10 @@ class CartsController < ApplicationController
     # skip_before_action :admin?
     before_action :find_cart, only: [:show, :update]
 
+    def index
+        render Cart.all
+    end
+    
     def show
         render json: find_cart
     end

@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect, useCallback} from "react"
-import {MessageContext} from "../context/message"
+import {MessageContext} from "./message"
 import {useHistory, Redirect} from 'react-router-dom'
 import {API} from '../config.js';
 

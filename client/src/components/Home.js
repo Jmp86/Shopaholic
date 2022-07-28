@@ -1,17 +1,52 @@
-import React from 'react';
+import * as React from 'react';
+import Button from '../components/Button';
+import Typography from '../components/Typography';
+import ProductHeroLayout from './ProductHeroLayout';
+import HomeImg from '../images/brooke-lark-W1B2LpQOBxA-unsplash.jpg'
 
-const Home = () => {
-    return (
-        <div className="home" style={{ backgroundImage: `url(https://media.istockphoto.com/photos/online-shopping-and-payment-man-using-tablet-with-shopping-cart-icon-picture-id1206800961?k=20&m=1206800961&s=612x612&w=0&h=hcPoUKhWtzHXR3PIAHVgPVZDZaO7R8yZ1wNPkUSsgwU=`}}>
-            <h1>
-                Welcome to SHOPAHOLIC!
-            </h1>
-            <h3>Log in or sign up to begin shopping!</h3>
-        </div>
-    );
+
+export default function Home() {
+  return (
+    <ProductHeroLayout
+      sxBackground={{
+        backgroundImage: `url(${HomeImg})`,
+        backgroundColor: '#7fc7d9', // Average color of the background image.
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Increase the network loading priority of the background image. */}
+      <img
+        style={{ display: 'none' }}
+        src={HomeImg}
+        alt="increase priority"
+      />
+      <Typography color="inherit" align="center" variant="h2" marked="center">
+        Shopaholic
+      </Typography>
+      <Typography
+        color="inherit"
+        align="center"
+        variant="h5"
+        sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
+      >
+        Find all of your shopping needs in one place!
+      </Typography>
+      <Button
+        color="secondary"
+        variant="contained"
+        size="large"
+        component="a"
+        href="/premium-themes/onepirate/sign-up/"
+        sx={{ minWidth: 200 }}
+      >
+        Sign Up Now!
+      </Button>
+      <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
+        Discover Our Products
+      </Typography>
+    </ProductHeroLayout>
+  );
 }
-
-export default Home;
 
 
 // https://www.itl.cat/pngfile/big/165-1655864_e-commerce-px-shopping-cart.jpg

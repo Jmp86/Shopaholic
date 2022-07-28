@@ -3,17 +3,25 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { CardActionArea, CardActions } from '@mui/material';
+import Button from './Button'
+import {useHistory} from 'react-router-dom'
+import {ItemContext} from '../context/item'
+import { useContext } from 'react';
 
 const ItemCard = ({item}) => {
+  const {getItem} = useContext(ItemContext)
+  const history = useHistory()
 
-  //   const handleClick = () => {
-//     history.push("/item/" + item.id);
-// }
+    const handleClick = () => {
+      // console.log(item)
+    getItem(item.product_id)  
+    history.push("/item/" + item.id);
+}
 
     return (
       
-        <Card sx={{ maxWidth: 300 }}>
+        <Card sx={{ maxWidth: 300 }} onClick={handleClick}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -31,8 +39,9 @@ const ItemCard = ({item}) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
             {item.reviews}
+          <Button size="small" >
+            Add to Cart
           </Button>
         </CardActions>
       </Card>

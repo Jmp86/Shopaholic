@@ -2,17 +2,18 @@ import '../App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import {UserContext} from '../context/user';
-import Home from './Home';
+import Home from '../components/Home';
 import ShopByCategory from '../containers/ShopByCategory';
-import Navigation from './Navigation';
-import Notification from './Notification';
-import Login from './Login';
-import SignUp from './SignUp';
-import Profile from './Profile';
-import Logout from './Logout';
-import Cart from '../containers/Cart'
-import ShopItems from '../containers/ShopItems'
-import ItemProfile from './ItemProfile'
+import Navigation from '../components/Navigation';
+import Notification from '../components/Notification';
+import Login from '../components/Login';
+import SignUp from '../components/SignUp';
+import Profile from '../components/Profile';
+import Logout from '../components/Logout';
+import Cart from './Cart'
+import ShopItems from './ShopItems'
+// import ItemProfile from '../components/ItemProfile'
+
 
 function App() {
   const [isLoading, setLoading] = useState(true)

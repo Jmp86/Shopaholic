@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect, useCallback} from "react"
-import {MessageContext} from "../context/message"
-import {UserContext} from '../context/user';
+import {MessageContext} from "./message"
+import {UserContext} from './user';
 import {useHistory, Redirect} from 'react-router-dom'
 
 
@@ -12,7 +12,8 @@ function CartProvider({children}) {
     const {user} = useContext(UserContext)
     const {setMessage} = useContext(MessageContext)
 
-    const getCart = useCallback(async () => { 
+    const getCart = useCallback(async () => {
+        if (user) {
         try {
             const resp = await fetch('/api/v1/carts/' + user.cart.id)
              if (resp.status === 200) {
@@ -22,8 +23,8 @@ function CartProvider({children}) {
              } 
         } catch (e) {
             setMessage({message: "No items to display", color: "red"})
-        }
-    }, [setMessage, user.cart.id])
+        }}
+    }, [setMessage, user])
 
     return (
         <CartContext.Provider value={{cart, setCart, getCart}}>
