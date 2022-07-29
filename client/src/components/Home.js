@@ -36,7 +36,7 @@ export default function Home() {
         variant="contained"
         size="large"
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        href="/signup/"
         sx={{ minWidth: 200 }}
       >
         Sign Up Now!

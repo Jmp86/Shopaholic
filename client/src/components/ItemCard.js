@@ -6,14 +6,13 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
 import {useHistory} from 'react-router-dom'
 import {ItemContext} from '../context/item'
-import { useContext } from 'react';
+import {useContext} from 'react';
 
 const ItemCard = ({item}) => {
   const {getItem} = useContext(ItemContext)
   const history = useHistory()
 
     const handleClick = () => {
-      console.log(item)
     getItem(item.product_id)  
     history.push("/item/" + item.product_id);
 }

@@ -6,19 +6,18 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {ItemContext} from '../context/item'
-import Loader from '../components/Loader'
-
+import BasicRating from './BasicRating';
 
 const theme = createTheme();
 
-export default function ItemProfile({setLoading, isLoading}) {
+export default function ItemProfile() {
     const {item} = useContext(ItemContext)
 
+
     const finalItem = item ? item : null
-  
-  return isLoading ? (
-    <Loader/>
-    ) : (
+    console.log(finalItem)
+  return finalItem ? (
+
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
@@ -28,7 +27,7 @@ export default function ItemProfile({setLoading, isLoading}) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: `url(${finalItem.data.product_main_image_url})`,
+            backgroundImage: `url(${finalItem.product_main_image_url})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -46,12 +45,12 @@ export default function ItemProfile({setLoading, isLoading}) {
               alignItems: 'center',
             }}
           >
-            <h2>{finalItem.data.product_title}</h2>  
+            <h2>{finalItem.product_title}</h2>  
 
             <Box component="form" sx={{ mt: 1 }}>
               
-              <h2>${finalItem.data.app_sale_price}</h2> 
-              <h3>{finalItem.data.reviews}</h3> 
+              <h2>${finalItem.app_sale_price}</h2> 
+              <BasicRating value={finalItem.starNumber}/>
 
               <Button
                 type="submit"
@@ -68,6 +67,10 @@ export default function ItemProfile({setLoading, isLoading}) {
         </Grid>
       </Grid>
     </ThemeProvider>
+  ) : (
+    <h2>
+      Loading product ...
+    </h2>
     
   );
 }

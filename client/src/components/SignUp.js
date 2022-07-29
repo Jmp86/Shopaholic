@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {UserContext} from '../context/user'
 import {MessageContext} from '../context/message'
 import {useContext, useState} from 'react'
-import {useHistory, Redirect} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 function Copyright(props) {
   return (

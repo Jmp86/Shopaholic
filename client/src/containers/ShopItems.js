@@ -1,40 +1,38 @@
 import React, {useState, useContext, useEffect} from "react";
 import ItemCard from '../components/ItemCard';
 import {ItemContext} from "../context/item";
+import {MessageContext} from '../context/message'
 import {useParams} from 'react-router-dom';
 import {API} from '../config'
 import Loader from '../components/Loader'
 
 const ShopItems = ({setLoading, isLoading}) => {
     const {category} = useParams();
-    const {items} = useContext(ItemContext);
-    const [itemList, setItemList] = useState([]);
+    const {itemList} = useContext(ItemContext);
+    const [productList, setProductList] = useState([]);
+    const {setMessage} = useContext(MessageContext);
+    
 
     useEffect(() => {
-        if (!items) {
             fetch(`https://amazon24.p.rapidapi.com/api/bsr/${category}?page=1`, API)
             .then(resp => {
                 if (resp.status === 200) {
                     resp.json()
-                    .then(items => setItemList(items))
+                    .then(items => setProductList(items))
+                    setLoading(false)
+                } else {
+                    resp.json()
+                    .then(errorObj => setMessage(errorObj.error))
                 }
-                setLoading(false)
-                console.log(items)
-                //  else {
-                //     resp.json()
-                //     .then(errorObj => handleError(errorObj.error))
-                // }
             })
-            // .catch(error => handleError(error))
-        }
-    }, [category, setLoading, items])
+        
+    }, [category, setLoading, setMessage])
 
 
-    const finalItems = items ? items : itemList
-    const renderItems = finalItems?.map(item => <ItemCard key={item.id} item={item}/> )
+    const finalItems = itemList ? itemList : productList
+    const renderItems = finalItems.data?.map(item => <ItemCard key={item.product_title} item={item}/> )
     
- 
-    console.log(items)
+    console.log(finalItems)
     return isLoading ? (
         <Loader/>
        ) : (

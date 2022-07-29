@@ -3,13 +3,13 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import {useHistory} from 'react-router-dom'
-import React, {useState, useContext} from "react"
+import React, {useContext} from "react"
 import {ItemContext} from '../context/item'
 import {CategoryContext} from '../context/category'
 
 
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = () => {
   const {getBestSellers} = useContext(ItemContext);
   const {categoryData} = useContext(CategoryContext);
   const history = useHistory()
