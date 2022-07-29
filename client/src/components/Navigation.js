@@ -68,6 +68,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navigation() {
     const {user} = useContext(UserContext)
 
+    
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -131,7 +133,7 @@ export default function Navigation() {
                     >Log Out</NavLink>
                     <NavLink
                         exact
-                        to={"/cart/" + user.data.cart.user_id}
+                        to={"/cart/" + user.data.cart.id}
                     ><CartOutline/>
                     </NavLink>
                 </>

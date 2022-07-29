@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     end
 
     def show
-
         render json: current_user, status: :ok
     end
 
@@ -38,6 +37,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:email, :firstname, :lastname, :password, :password_confirmation)
+        params.permit(:email, :firstname, :lastname, :password, :password_confirmation )
     end
 end

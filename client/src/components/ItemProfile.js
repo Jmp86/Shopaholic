@@ -1,22 +1,79 @@
-import {useContext} from 'react';
+import {useContext, useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {ItemContext} from '../context/item'
+// import {ItemContext} from '../context/item'
+import {MessageContext} from '../context/message'
+import {UserContext} from '../context/user'
+import {CartContext} from '../context/cart'
 import BasicRating from './BasicRating';
-
+import {useLocation} from 'react-router-dom'
 const theme = createTheme();
 
-export default function ItemProfile() {
-    const {item} = useContext(ItemContext)
+export default function ItemProfile(props) {
+    const {setMessage} = useContext(MessageContext);
+    // const {item} = useContext(ItemContext);
+    const {user} = useContext(UserContext);
+    const {cart, setCart} = useContext(CartContext);
+    const [updatedCart, setUpdatedCart] = useState([]);
+    const location = useLocation()
+    const [updatedItem, setUpdateItem] = useState({
+      name: location.state.detail.product_title,
+      image: location.state.detail.product_main_image_url,
+      price: location.state.detail.app_sale_range.max,
+      rating: location.state.detail.updatedItem
+
+  });
+
+    // useEffect(() => {
+    //   getCart()
+    // }, [getCart])
+
+    console.log(updatedItem)
+    console.log(updatedCart)
+    console.log(cart)
+
+    const handleClick = () => {
 
 
-    const finalItem = item ? item : null
-    console.log(finalItem)
-  return finalItem ? (
+        
+    updatedCart.push(updatedItem)
+
+     const addItemToCart = async () => {
+      try {
+        const resp = await fetch(`/api/v1/carts/${user.data.cart.id}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            "items_in_cart": updatedCart
+          })
+      })
+      if (resp.status === 200) {
+          const data = await resp.json()
+          setCart(data)
+          setMessage({message: "Item added to cart", color: "green"})
+      } else {
+          const errorObj = await resp.json()
+          setMessage({message: errorObj.error, color: "red"})
+      }
+
+      } catch(e) {
+          setMessage({message: e.message, color: "red"})
+      }
+  }
+addItemToCart()
+}
+
+    // const finalItem = item ? item : null
+
+
+return (
 
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -27,7 +84,7 @@ export default function ItemProfile() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: `url(${finalItem.product_main_image_url})`,
+            backgroundImage: `url(${updatedItem.image})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -45,32 +102,31 @@ export default function ItemProfile() {
               alignItems: 'center',
             }}
           >
-            <h2>{finalItem.product_title}</h2>  
+            <h2>{updatedItem.name}</h2>  
 
             <Box component="form" sx={{ mt: 1 }}>
               
-              <h2>${finalItem.app_sale_price}</h2> 
-              <BasicRating value={finalItem.starNumber}/>
+              <h2>${updatedItem.price}</h2> 
+              <BasicRating value={updatedItem.rating}/>
 
               <Button
-                type="submit"
+              onClick={handleClick}
+                
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
                 Add to cart
               </Button>
-
-            
             </Box>
           </Box>
         </Grid>
       </Grid>
     </ThemeProvider>
-  ) : (
-    <h2>
-      Loading product ...
-    </h2>
+  // ) : (
+  //   <h2>
+  //     Loading product ...
+  //   </h2>
     
   );
 }

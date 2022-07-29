@@ -12,15 +12,15 @@ export default function CartItemCard({item}) {
       //   const handleClick = () => {
 //     history.push("/item/" + item.id);
 // }
-
+console.log(item)
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start">
+      <ListItem alignItems="flex-start" key={item.id}>
         <ListItemAvatar>
-          <Avatar alt={item.item_name} src={item.image} />
+          <Avatar alt={item.product_name} src={item.product_main_image_url} />
         </ListItemAvatar>
         <ListItemText
-          primary="Brunch this weekend?"
+          primary={item}
           secondary={
             <React.Fragment>
               <Typography
@@ -29,7 +29,7 @@ export default function CartItemCard({item}) {
                 variant="body2"
                 color="text.primary"
               >
-                {item.item_name}
+                {item}
               </Typography>
               {" — I'll be in your neighborhood doing errands this…"}
             </React.Fragment>

@@ -16,9 +16,10 @@ class CartsController < ApplicationController
     end
 
     def update
-        if current_user.cart.include?(@cart)
-            @cart&.update!(cart_params)
-            render json: cart
+        if(@current_user.id == @cart.user_id)
+            # binding.pry
+            @cart.update!(cart_params)
+            render json: @cart, status: :ok
         else
             no_route
         end
@@ -29,10 +30,11 @@ class CartsController < ApplicationController
     private
 
     def find_cart
-        @cart = Cart.find(params[:id])
+        @cart ||= Cart.find(params[:id])
     end
 
     def cart_params
-        params.permit(:items_in_cart, :order_date, :order_total)
+        params.require(:cart).permit(:order_date, :order_total, items_in_cart: [:name, :image, :price, :rating])
     end
 end
+

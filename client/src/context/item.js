@@ -20,9 +20,9 @@ function ItemProvider({children}) {
                 setItem(data)
              } 
         } catch (e) {
-            setMessage({message: "No items to display", color: "red"})
+           
         }
-    }, [setMessage])
+    }, [])
 
     const getBestSellers = (category) => { 
  

@@ -1,27 +1,13 @@
-import React, {useState, useContext, useEffect, useCallback} from "react"
-import {MessageContext} from "../context/message"
-import {useHistory} from 'react-router-dom'
+import * as React from "react"
+
+
 
 
 const CategoryContext = React.createContext()
 
 
 function CategoryProvider({children}) {
-    const [category, setCategory] = useState([]);
-    const {setMessage} = useContext(MessageContext)
 
-    // const getCart = useCallback(async () => { 
-    //     try {
-    //         const resp = await fetch('/api/v1/carts/' + user.cart.id)
-    //          if (resp.status === 200) {
-    //             const data = await resp.json() 
-    //             console.log(data)
-    //             setCart({data})
-    //          } 
-    //     } catch (e) {
-    //         setMessage({message: "No items to display", color: "red"})
-    //     }
-    // }, [setMessage, user.cart.id])
 
     const categoryData = [
         {
@@ -111,7 +97,7 @@ function CategoryProvider({children}) {
       ];
 
     return (
-        <CategoryContext.Provider value={{category, categoryData}}>
+        <CategoryContext.Provider value={{categoryData}}>
             {children}
         </CategoryContext.Provider>
     )

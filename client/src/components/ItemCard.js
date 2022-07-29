@@ -14,7 +14,10 @@ const ItemCard = ({item}) => {
 
     const handleClick = () => {
     getItem(item.product_id)  
-    history.push("/item/" + item.product_id);
+    history.push({
+      pathname: "/item/" + item.product_id,
+      state: { detail: item}
+    });
 }
 
     return (

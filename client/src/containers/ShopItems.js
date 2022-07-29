@@ -20,10 +20,7 @@ const ShopItems = ({setLoading, isLoading}) => {
                     resp.json()
                     .then(items => setProductList(items))
                     setLoading(false)
-                } else {
-                    resp.json()
-                    .then(errorObj => setMessage(errorObj.error))
-                }
+                } 
             })
         
     }, [category, setLoading, setMessage])
