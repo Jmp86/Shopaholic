@@ -42,7 +42,7 @@ export default function Home() {
         Sign Up Now!
       </Button>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-        Discover Our Amazing Products
+        Discover Our Amazing Products!
       </Typography>
     </ProductHeroLayout>
   );

@@ -2,6 +2,7 @@ import '../App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import {UserContext} from '../context/user';
+import {CartContext} from '../context/cart';
 import Home from '../components/Home';
 import ShopByCategory from '../containers/ShopByCategory';
 import Navigation from '../components/Navigation';
@@ -17,12 +18,21 @@ import ItemProfile from '../components/ItemProfile'
 
 function App() {
   const [isLoading, setLoading] = useState(true)
-
+  const {cart, getCart} = useContext(CartContext)
   const {getCurrentUser} = useContext(UserContext)
 
   useEffect(() => {
     getCurrentUser()
   }, [getCurrentUser])
+
+  const loadCart = () => {
+    if (cart) {
+      return cart
+     } else {
+       getCart()
+     }}
+
+  loadCart()
 
   return (
     <div className='App'>

@@ -29,16 +29,18 @@ const ShopItems = ({setLoading, isLoading}) => {
     // }, [category, setLoading, setMessage])
 
 
-    const finalItems = itemList ? itemList : null
-    const renderItems = finalItems.data?.map(item => <ItemCard key={item.product_title} item={item}/> )
+    // const finalItems = itemList ? itemList : null
+    const renderItems = itemList.data?.map(item => <ItemCard key={item.product_title} item={item}/> )
     
-    console.log(finalItems)
-    return isLoading ? (
+    console.log(itemList)
+    return !itemList ? (
         <Loader/>
-       ) : (
+    ) : (
         <div className ='table'>    
+         
             {renderItems}
        </div> 
+
     );
 }
 

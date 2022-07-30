@@ -66,8 +66,8 @@ export default function ItemProfile(props) {
   }
 
 
-    const index = location.state.detail.reviews.search(/[0-9]/);
-    const firstNum = Number(location.state.detail.reviews[index]);
+    // const index = location.state.detail.reviews.search(/[0-9]/);
+    // const firstNum = Number(location.state.detail.reviews[index]);
 
 
 
@@ -103,7 +103,7 @@ return (
             <h2>{updatedItem.name}</h2>  
             <Box component="form" sx={{ mt: 1 }}>
               <h2>${updatedItem.price}</h2> 
-              <BasicRating value={firstNum}/>
+              {/* <BasicRating value={firstNum}/> */}
               <Button
                 onClick={handleClick}
                 fullWidth

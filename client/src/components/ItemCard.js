@@ -18,12 +18,12 @@ const ItemCard = ({item}) => {
     getItem(item.product_id)  
     history.push({
       pathname: "/item/" + item.product_id,
-      state: { detail: item}
+      state: {detail: item}
     });
 }
 
-  const index = item ? item.reviews.search(/[0-9]/) : null;
-  const firstNum = Number(item.reviews[index]);
+  // const index = item.reviews.search(/[0-9]/);
+  // const firstNum = Number(item.reviews[index]);
 
     return (
       
@@ -44,7 +44,7 @@ const ItemCard = ({item}) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <BasicRating value={firstNum}/>
+        {/* <BasicRating value={firstNum}/> */}
       </Card>
     );
 }
