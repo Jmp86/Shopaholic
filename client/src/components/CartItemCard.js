@@ -7,6 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
+
 export default function CartItemCard({item}) {
     // const [user, setUser] = useState(null);
       //   const handleClick = () => {
@@ -17,10 +18,10 @@ console.log(item)
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <ListItem alignItems="flex-start" key={item.id}>
         <ListItemAvatar>
-          <Avatar alt={item.product_name} src={item.product_main_image_url} />
+          <Avatar alt={item.name} src={item.image} />
         </ListItemAvatar>
         <ListItemText
-          primary={item}
+          primary={item.name}
           secondary={
             <React.Fragment>
               <Typography
@@ -29,9 +30,8 @@ console.log(item)
                 variant="body2"
                 color="text.primary"
               >
-                {item}
+                ${item.price}
               </Typography>
-              {" — I'll be in your neighborhood doing errands this…"}
             </React.Fragment>
           }
         />
@@ -39,5 +39,6 @@ console.log(item)
       <Divider variant="inset" component="li" />
 
     </List>
+
   );
 }

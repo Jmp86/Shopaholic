@@ -17,30 +17,26 @@ export default function ItemProfile(props) {
     const {setMessage} = useContext(MessageContext);
     // const {item} = useContext(ItemContext);
     const {user} = useContext(UserContext);
-    const {cart, setCart} = useContext(CartContext);
+    const {cart, getCart} = useContext(CartContext);
     const [updatedCart, setUpdatedCart] = useState([]);
     const location = useLocation()
-    const [updatedItem, setUpdateItem] = useState({
+    const [updatedItem, setUpdatedItem] = useState({
       name: location.state.detail.product_title,
       image: location.state.detail.product_main_image_url,
-      price: location.state.detail.app_sale_range.max,
-      rating: location.state.detail.updatedItem
-
+      price: location.state.detail.app_sale_range.min,
+      rating: 0
   });
 
-    // useEffect(() => {
-    //   getCart()
-    // }, [getCart])
+    useEffect(() => {
+      getCart()
+    }, [getCart])
 
     console.log(updatedItem)
-    console.log(updatedCart)
+    // console.log(updatedCart)
     console.log(cart)
 
     const handleClick = () => {
-
-
-        
-    updatedCart.push(updatedItem)
+    cart.data.items_in_cart.push(updatedItem)
 
      const addItemToCart = async () => {
       try {
@@ -51,12 +47,11 @@ export default function ItemProfile(props) {
               "Accept": "application/json"
           },
           body: JSON.stringify({
-            "items_in_cart": updatedCart
+            "items_in_cart": cart.data.items_in_cart
           })
       })
       if (resp.status === 200) {
           const data = await resp.json()
-          setCart(data)
           setMessage({message: "Item added to cart", color: "green"})
       } else {
           const errorObj = await resp.json()
@@ -66,11 +61,14 @@ export default function ItemProfile(props) {
       } catch(e) {
           setMessage({message: e.message, color: "red"})
       }
+    }
+  addItemToCart()
   }
-addItemToCart()
-}
 
-    // const finalItem = item ? item : null
+
+    const index = location.state.detail.reviews.search(/[0-9]/);
+    const firstNum = Number(location.state.detail.reviews[index]);
+
 
 
 return (
@@ -103,15 +101,11 @@ return (
             }}
           >
             <h2>{updatedItem.name}</h2>  
-
             <Box component="form" sx={{ mt: 1 }}>
-              
               <h2>${updatedItem.price}</h2> 
-              <BasicRating value={updatedItem.rating}/>
-
+              <BasicRating value={firstNum}/>
               <Button
-              onClick={handleClick}
-                
+                onClick={handleClick}
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}

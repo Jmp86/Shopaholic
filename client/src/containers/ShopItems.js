@@ -20,8 +20,11 @@ const ShopItems = ({setLoading, isLoading}) => {
                     resp.json()
                     .then(items => setProductList(items))
                     setLoading(false)
-                } 
-            })
+                } else {
+                    setMessage({message: "Loading Items", color: "yellow"})
+                }
+            }) 
+            
         
     }, [category, setLoading, setMessage])
 
