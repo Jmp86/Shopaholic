@@ -7,6 +7,8 @@ import { CardActionArea, CardActions } from '@mui/material';
 import {useHistory} from 'react-router-dom'
 import {ItemContext} from '../context/item'
 import {useContext} from 'react';
+import BasicRating from './BasicRating'
+
 
 const ItemCard = ({item}) => {
   const {getItem} = useContext(ItemContext)
@@ -19,6 +21,9 @@ const ItemCard = ({item}) => {
       state: { detail: item}
     });
 }
+
+  const index = item ? item.reviews.search(/[0-9]/) : null;
+  const firstNum = Number(item.reviews[index]);
 
     return (
       
@@ -39,9 +44,7 @@ const ItemCard = ({item}) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-            {item.reviews}
-        </CardActions>
+        <BasicRating value={firstNum}/>
       </Card>
     );
 }

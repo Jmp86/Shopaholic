@@ -13,23 +13,23 @@ const ShopItems = ({setLoading, isLoading}) => {
     const {setMessage} = useContext(MessageContext);
     
 
-    useEffect(() => {
-            fetch(`https://amazon24.p.rapidapi.com/api/bsr/${category}?page=1`, API)
-            .then(resp => {
-                if (resp.status === 200) {
-                    resp.json()
-                    .then(items => setProductList(items))
-                    setLoading(false)
-                } else {
-                    setMessage({message: "Loading Items", color: "yellow"})
-                }
-            }) 
+    // useEffect(() => {
+    //         fetch(`https://amazon24.p.rapidapi.com/api/bsr/${category}?page=1`, API)
+    //         .then(resp => {
+    //             if (resp.status === 200) {
+    //                 resp.json()
+    //                 .then(items => setProductList(items))
+    //                 setLoading(false)
+    //             } else {
+    //                 setMessage({message: "Loading Items", color: "yellow"})
+    //             }
+    //         }) 
             
         
-    }, [category, setLoading, setMessage])
+    // }, [category, setLoading, setMessage])
 
 
-    const finalItems = itemList ? itemList : productList
+    const finalItems = itemList ? itemList : null
     const renderItems = finalItems.data?.map(item => <ItemCard key={item.product_title} item={item}/> )
     
     console.log(finalItems)
