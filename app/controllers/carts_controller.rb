@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-    # skip_before_action :admin?
+    skip_before_action :authorize, only: [:create]
     before_action :find_cart, only: [:show, :update]
 
     def index
@@ -12,6 +12,7 @@ class CartsController < ApplicationController
 
     def create
         cart = @current_user.cart.create!(cart_params)
+            binding.pry
         render json: cart, status: :created
     end
 
@@ -34,7 +35,7 @@ class CartsController < ApplicationController
     end
 
     def cart_params
-        params.require(:cart).permit(:order_date, :order_total, items_in_cart: [:name, :image, :price, :rating])
+        params.require(:cart).permit(:user_id, :order_date, :order_total, items_in_cart: [:name, :image, :price, :rating])
     end
 end
 

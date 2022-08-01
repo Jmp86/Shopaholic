@@ -8,11 +8,9 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 
-export default function CartItemCard({item}) {
-    // const [user, setUser] = useState(null);
-      //   const handleClick = () => {
-//     history.push("/item/" + item.id);
-// }
+export default function CartItemCard({item, handleDelete, id}) {
+
+
 console.log(item)
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -37,7 +35,7 @@ console.log(item)
         />
       </ListItem>
       <Divider variant="inset" component="li" />
-
+      <button onClick={() => handleDelete(id)}>Remove</button>
     </List>
 
   );

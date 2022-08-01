@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id
-        Cart.create
+        Cart.create(user_id: user.id)
         render json: user, status: :created
     end
 
@@ -37,6 +37,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:email, :firstname, :lastname, :password, :password_confirmation )
+        params.permit(:email, :firstname, :lastname, :password, :password_confirmation)
     end
 end

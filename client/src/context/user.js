@@ -1,6 +1,7 @@
-import React, {useState, useContext, useEffect, useCallback} from "react"
-import {MessageContext} from "../context/message"
-import {useHistory, Redirect} from 'react-router-dom'
+import React, {useState, useContext, useCallback} from "react"
+import {MessageContext} from "./message"
+import {useHistory} from 'react-router-dom'
+
 
 const UserContext = React.createContext()
 
@@ -8,6 +9,7 @@ const UserContext = React.createContext()
 function UserProvider({children}) {
     const [user, setUser] = useState(null);
     const {setMessage} = useContext(MessageContext)
+
 
     const history = useHistory()
 
@@ -69,6 +71,7 @@ function UserProvider({children}) {
             setMessage({message: e.message, color: "red"})
         }
     }
+
     const logout = async () => { 
         try {
             const resp = await fetch("/api/v1/logout", {

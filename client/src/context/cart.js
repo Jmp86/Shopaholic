@@ -22,9 +22,10 @@ function CartProvider({children}) {
                 setCart({data})
              } 
         } catch (e) {
-            // setMessage({message: "No items to display", color: "red"})
+            setMessage({message: "No items to display", color: "red"})
         }}
     }, [setMessage, user])
+
 
     return (
         <CartContext.Provider value={{cart, setCart, getCart}}>

@@ -15,18 +15,23 @@
     overflow: hidden;
   }
 
-  h1 {
+  /* h1 {
     font-size: 65px;
     margin: 10rem 10rem 0rem;
     text-align: center; 
     color:whitesmoke;
-  }
+  } */
 
   h3 {
     font-size: 45px;
     text-align: center; 
     color:whitesmoke;
   }
+
+  h1 .signup {
+    color: black;
+  }
+
   .select-img:hover {
     background-color: whitesmoke;
     border: black solid 1px;

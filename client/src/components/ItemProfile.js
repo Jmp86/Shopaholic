@@ -5,22 +5,21 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import {ItemContext} from '../context/item'
 import {MessageContext} from '../context/message'
 import {UserContext} from '../context/user'
 import {CartContext} from '../context/cart'
-import BasicRating from './BasicRating';
+// import BasicRating from './BasicRating';
 import {useLocation} from 'react-router-dom'
+
 const theme = createTheme();
 
-export default function ItemProfile(props) {
+export default function ItemProfile() {
     const {setMessage} = useContext(MessageContext);
-    // const {item} = useContext(ItemContext);
     const {user} = useContext(UserContext);
     const {cart, getCart} = useContext(CartContext);
-    const [updatedCart, setUpdatedCart] = useState([]);
     const location = useLocation()
-    const [updatedItem, setUpdatedItem] = useState({
+    const [updatedItem] = useState({
+      id: location.state.detail.product_id,
       name: location.state.detail.product_title,
       image: location.state.detail.product_main_image_url,
       price: location.state.detail.app_sale_range.min,
@@ -64,12 +63,6 @@ export default function ItemProfile(props) {
     }
   addItemToCart()
   }
-
-
-    // const index = location.state.detail.reviews.search(/[0-9]/);
-    // const firstNum = Number(location.state.detail.reviews[index]);
-
-
 
 return (
 
@@ -117,10 +110,5 @@ return (
         </Grid>
       </Grid>
     </ThemeProvider>
-  // ) : (
-  //   <h2>
-  //     Loading product ...
-  //   </h2>
-    
   );
 }

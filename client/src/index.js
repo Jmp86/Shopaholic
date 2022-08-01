@@ -10,15 +10,15 @@ import {CartProvider} from './context/cart';
 
 ReactDOM.render(
     <MessageProvider>
+      <UserProvider>
       <ItemProvider>
       <CategoryProvider>
-      <UserProvider>
       <CartProvider>
         <App />
       </CartProvider>
-      </UserProvider>
       </CategoryProvider>
       </ItemProvider>
+      </UserProvider>
     </MessageProvider>,
 
   document.getElementById("root")
