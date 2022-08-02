@@ -4,7 +4,7 @@ const ShopByCategory = () => {
 
     return (
         <div className='table'>
-            <h2>Select a category to begin shopping</h2>
+            <h2>Select a category to begin shopping!</h2>
             <CategoryCard/>
         </div>
     );

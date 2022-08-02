@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 
-export default function CartItemCard({item, handleDelete, id}) {
+export default function CartItemCard({item, handleDelete, index}) {
 
 
 console.log(item)
@@ -35,7 +35,7 @@ console.log(item)
         />
       </ListItem>
       <Divider variant="inset" component="li" />
-      <button onClick={() => handleDelete(item)}>Remove</button>
+      <button onClick={() => handleDelete(index)}>Remove</button>
     </List>
 
   );

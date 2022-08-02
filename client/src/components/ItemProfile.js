@@ -19,11 +19,10 @@ export default function ItemProfile() {
     const {cart, getCart} = useContext(CartContext);
     const location = useLocation()
     const [updatedItem] = useState({
-      id: location.state.detail.product_id,
       name: location.state.detail.product_title,
       image: location.state.detail.product_main_image_url,
       price: location.state.detail.app_sale_range.min,
-      rating: 0
+      rating: ""
   });
 
     useEffect(() => {
