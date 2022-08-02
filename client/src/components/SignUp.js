@@ -58,8 +58,8 @@ export default function SignUp() {
       const newUserCreated = signup({...userObj, password_confirmation: userObj.passwordConfirmation})
       if (newUserCreated) {
           setMessage({message: "Thanks for creating an account!", color: "green"})
-          
-      }
+          history.push('/profile/' + userObj.id)
+      } 
     }
 
   return (

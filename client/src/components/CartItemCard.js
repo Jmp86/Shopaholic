@@ -35,7 +35,7 @@ console.log(item)
         />
       </ListItem>
       <Divider variant="inset" component="li" />
-      <button onClick={() => handleDelete(id)}>Remove</button>
+      <button onClick={() => handleDelete(item)}>Remove</button>
     </List>
 
   );

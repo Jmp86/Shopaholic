@@ -44,7 +44,7 @@ const ItemCard = ({item}) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        {/* <BasicRating value={firstNum}/> */}
+        {item.app_sale_range.min}
       </Card>
     );
 }

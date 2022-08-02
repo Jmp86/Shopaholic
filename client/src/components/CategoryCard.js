@@ -33,7 +33,7 @@ const CategoryCard = () => {
               alt={cat.title}
               loading="lazy"
             />
-            <ImageListItemBar position="below" title={cat.title} />
+            <ImageListItemBar className="categoryCard" position="below" title={cat.title} />
           </ImageListItem>
         ))}
       </ImageList>

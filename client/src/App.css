@@ -28,8 +28,9 @@
     color:whitesmoke;
   }
 
-  h1 .signup {
+  .categoryCard {
     color: black;
+    font-weight: bolder;
   }
 
   .select-img:hover {

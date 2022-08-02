@@ -1,4 +1,18 @@
 import * as React from "react"
+import appliances from "../images/appliances.jpg"
+import electronics from "../images/electronics1.jpg"
+import beauty from "../images/beauty.jpg"
+import fashion from "../images/fashion.jpg"
+import grocery from "../images/grocery.jpg"
+import mobileapps from "../images/mobileapps.jpg"
+import movies from "../images/movies.jpg"
+import office from "../images/office.jpg"
+import pharmacy from "../images/pharmacy.jpg"
+import software from "../images/software.jpg"
+import toysandgames from "../images/toysandgames.jpg"
+import videogames from "../images/videogames.jpg"
+import artsandcrafts from "../images/artsandcrafts.jpg"
+import handmade from "../images/handmade.jpg"
 
 
 
@@ -12,87 +26,87 @@ function CategoryProvider({children}) {
     const categoryData = [
         {
           id: 1,
-          img: 'https://imageio.forbes.com/specials-images/imageserve/615b7a2d10f14c6d90c57d56/Small-appliances-on-a-kitchen-countertop-/960x0.jpg?format=jpg&width=960',
+          img: `${appliances}`,
           title: 'Appliances',
           category: 'appliances',
         },
         {
           id: 2,
-          img: 'https://expertreviews.b-cdn.net/sites/expertreviews/files/styles/er_main_wide/public/2022/01/refurbished_tvs_-_box_lg.jpg?itok=sHYbRa8I',
-          title: "TV",
-          category: 'tv',
+          img: `${beauty}`,
+          title: "Beauty & Personal Care",
+          category: 'beauty',
         },
         {
           id: 3,
-          img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-          title: "Men's Clothing",
-          category: 'fashion-mens',
+          img: `${electronics}`,
+          title: "Electronics",
+          category: 'electronics',
         },
         {
           id: 4,
-          img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-          title: "Women's Clothing",
-          category: 'fashion-womens',
+          img: `${mobileapps}`,
+          title: "Apps",
+          category: 'mobile-apps',
         },
         {
           id: 5,
-          img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-          title: 'Automotive',
-          category: 'automotive',
+          img: `${artsandcrafts}`,
+          title: 'Arts & Crafts',
+          category: 'arts-crafts',
         },
         {
           id: 6,
-          img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-          title: 'Computers',
-          category: 'computers',
+          img: `${handmade}`,
+          title: 'Handmade',
+          category: 'handmade',
         },
         {
           id: 7,
-          img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-          title: 'Phones',
-          category: 'mobile',
+          img: `${fashion}`,
+          title: 'Clothing & Accessories',
+          category: 'fashion',
         },
         {
           id: 8,
-          img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-          title: "Garden & Outdoor",
-          category: 'lawngarden',
+          img: `${movies}`,
+          title: "Movies & TV",
+          category: 'movies-tv',
         },
         {
           id: 9,
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-          title: 'Sports Equipment',
-          category: 'sporting',
+          img: `${grocery}`,
+          title: 'Grocery',
+          category: 'grocery',
         },
         {
           id: 10,
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-          title: "Home & Kitchen",
-          category: 'garden',
+          img: `${pharmacy}`,
+          title: "Pharmacy & Cleaning",
+          category: 'industrial',
         },
         {
           id: 11,
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+          img: `${office}`,
           title: "Office Products",
           category: 'office-products',
         },
         {
           id: 12,
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-          title: "Pet Supplies",
-          category: 'pets',
+          img: `${software}`,
+          title: "Software",
+          category: 'software',
         },
         {
           id: 13,
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-          title: "Beauty & Personal Care",
-          category: 'beauty',
+          img: `${videogames}`,
+          title: "Video Games",
+          category: 'videogames',
         },
         {
           id: 14,
-          img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-          title: "Video Games",
-          category: 'videogames',
+          img: `${toysandgames}`,
+          title: "Toys & Games",
+          category: 'toys-and-games',
         }
       ];
 
