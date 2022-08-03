@@ -33,6 +33,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-        params.permit(:items_ordered, :order_date, :order_total)
+        params.require(:order).permit(:order_date, :order_total, items_ordered:[:name, :image, :price, :rating])
     end
 end
