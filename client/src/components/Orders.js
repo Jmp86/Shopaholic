@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react';
+import React, {useContext} from "react";
+import {OrderContext} from '../context/order'
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,16 +14,12 @@ function preventDefault(e) {
 }
 
 export default function Orders() {
-  const [orders, setOrders] = useState([])
+  const {orders} = useContext(OrderContext);
 
-  useEffect(() => {
-    fetch('/api/v1/orders')
-    .then(r => r.json())
-    .then(data => setOrders(data))
-  }, [])
+
 
   return (
-    <>
+    <React.Fragment>
     {console.log(orders)}
       <Title>Recent Orders</Title>
       <Table size="small">
@@ -34,18 +31,19 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {orders ? orders.items_ordered.map((order) => (
+          {orders ? orders.data.map((order) => (
+              
             <TableRow key={order.id}>
-              <TableCell>{order.created_at}</TableCell>
+              <TableCell>{order.order_date}</TableCell>
               <TableCell>{order.id}</TableCell>
               <TableCell align="right">{`$${order.order_amount}`}</TableCell>
             </TableRow>
-          )) : []} */}
+          )) : []}
         </TableBody>
       </Table>
       <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more orders
       </Link>
-    </>
+    </React.Fragment>
   );
 }

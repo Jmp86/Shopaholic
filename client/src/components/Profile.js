@@ -38,7 +38,9 @@ const mdTheme = createTheme();
 function Profile() {
     const {user} = useContext(UserContext)
 
+
   return (
+    
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -87,7 +89,7 @@ function Profile() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+                 <Orders/>
                 </Paper>
               </Grid>
             </Grid>

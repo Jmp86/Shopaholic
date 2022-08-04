@@ -6,11 +6,13 @@ import {MessageProvider} from './context/message';
 import {ItemProvider} from './context/item';
 import {CategoryProvider} from './context/category';
 import {CartProvider} from './context/cart';
+import {OrderProvider} from './context/order';
 
 
 ReactDOM.render(
     <MessageProvider>
       <UserProvider>
+      <OrderProvider>
       <ItemProvider>
       <CategoryProvider>
       <CartProvider>
@@ -18,6 +20,7 @@ ReactDOM.render(
       </CartProvider>
       </CategoryProvider>
       </ItemProvider>
+      </OrderProvider>
       </UserProvider>
     </MessageProvider>,
 
