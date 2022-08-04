@@ -79,14 +79,7 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
           "Content-Type": "application/json",
         },
       })
-      .then(r => r.json())
-      .then(data => {
-        if (data.errors) {
-            setMessage(data.errors)
-          } else {
-            setUser(user)
-        }
-      })
+      setMessage({message: "Sorry to see you go!", color: "yellow"})
       history.push('/')
 }
 
