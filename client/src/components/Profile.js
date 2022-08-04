@@ -11,7 +11,8 @@ import Link from '@mui/material/Link';
 import { PencilOutline } from 'mdi-material-ui'
 import Title from './Title';
 import {UserContext} from "../context/user"
-import {useContext} from "react"
+import {useContext, useState} from "react"
+import UserUpdateForm from './UserUpdateForm'
 
 
 
@@ -37,13 +38,14 @@ const mdTheme = createTheme();
 
 function Profile() {
     const {user} = useContext(UserContext)
-
+    const [showUpdateForm, setShowUpdateForm] = useState(false)
 
   return (
     
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
+        
         <Box
           component="main"
           sx={{
@@ -56,34 +58,23 @@ function Profile() {
             overflow: 'auto',
           }}
         >
+          <h1>{user.data.firstname}'s Account</h1>
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} md={12} lg={12}>
                 <Paper
                   sx={{
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 'justify-content',
                   }}
                 >
-                 <Title>Edit your account information   <PencilOutline/></Title>
-                 
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/* <Deposits /> */}
+                 <Title>Edit your account information</Title>
+                  {showUpdateForm ? <UserUpdateForm key={user.id} setShowUpdateForm={setShowUpdateForm} /> : <button className="updateButton" onClick={(e) => setShowUpdateForm(true)}><PencilOutline/></button>}   
+
                 </Paper>
               </Grid>
               {/* Recent Orders */}

@@ -40,10 +40,14 @@
     cursor: pointer;
   } 
 
-  .categoryImg:hover {
+  .categoryImg:hover{
     background-color: whitesmoke;
     border: black solid 1px;
     color: black;
+    cursor: pointer;
+  } 
+
+  .link:hover{
     cursor: pointer;
   } 
 
