@@ -4,6 +4,7 @@ import {useContext, useEffect} from 'react';
 import {MessageContext} from "../context/message";
 import {UserContext} from '../context/user'
 import {OrderContext} from '../context/order'
+import {ItemContext} from '../context/item'
 import Button from '../components/Button'
 import {Link} from 'react-router-dom'
 
@@ -13,6 +14,7 @@ const Cart = () => {
     const {setMessage} = useContext(MessageContext);
     const {user} = useContext(UserContext);
     const {getOrders} = useContext(OrderContext);
+    const {createItem} = useContext(ItemContext);
 
 
     useEffect(() => {
@@ -71,6 +73,7 @@ const Cart = () => {
             if (resp.status === 201) {
                 const data = await resp.json()
                 getOrders()
+                createItem(data)
                 setMessage({message: "Order Received!", color: "green"})
             } else {
                 const errorObj = await resp.json()
@@ -111,13 +114,13 @@ const Cart = () => {
         
 
     const finalItems = cart ? cart.data.items_in_cart : null
-    const renderItems = finalItems?.map((item, index) => <CartItemCard index={index} handleDelete={handleDelete} item={item}/> )
+    const renderItems = finalItems?.map((item, index) => <CartItemCard key={index} index={index} handleDelete={handleDelete} item={item}/> )
 
     return (
         <div>
             {renderItems}
             <Link to={`/profile/` + user.id}>
-            <h3>{cartTotal}</h3>
+            {/* <h3>{cartTotal}</h3> */}
             <Button onClick={handleOrder}>
                 Submit Order
             </Button>

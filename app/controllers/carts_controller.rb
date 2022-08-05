@@ -26,12 +26,12 @@ class CartsController < ApplicationController
         end
     end
 
-    # def cart_total
-    #     prices = @cart.items_in_cart.map{|item| item.price}
-    #     total_price = sum(prices)
-    #     binding.pry
-    #     render json: total_price , status: :ok
-    # end
+    def cart_total
+        prices = @cart.items_in_cart.map{|item| item.price}
+        total_price = sum(prices)
+        binding.pry
+        render json: total_price , status: :ok
+    end
 
 
 

@@ -11,10 +11,10 @@ class ItemsController < ApplicationController
         render json: item
     end
 
-    # def create
-    #     item = Item.create!(item_params)
-    #     render json: item, status: :created
-    # end
+    def create
+        item = Item.create!(item_params)
+        render json: item, status: :created
+    end
 
     # def update
     #     item = Item.find_by(id: params[:id])

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get "/carts/:id/cart_total", to: "carts#cart_total"
       
       resources :users, only: [:update, :destroy]
-      # resources :items
+      resources :items
       resources :carts
       resources :orders
       resources :reviews

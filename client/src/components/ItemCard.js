@@ -44,7 +44,7 @@ const ItemCard = ({item}) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        {item.app_sale_range.min}
+        <h4>${item.app_sale_range.min}</h4>
       </Card>
     );
 }
