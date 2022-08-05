@@ -12,7 +12,6 @@ function OrderProvider({children}) {
             const resp = await fetch('/api/v1/orders')
              if (resp.status === 200) {
                 const data = await resp.json() 
-                console.log(data)
                 setOrders({data})
              } 
         } catch (e) {

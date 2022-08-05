@@ -1,10 +1,10 @@
 class CartsController < ApplicationController
     skip_before_action :authorize, only: [:create]
-    before_action :find_cart, only: [:show, :update]
+    before_action :find_cart, only: [:show, :update, :cart_total]
 
-    def index
-        render Cart.all
-    end
+    # def index
+    #     render Cart.all
+    # end
     
     def show
         render json: find_cart
@@ -25,6 +25,13 @@ class CartsController < ApplicationController
             no_route
         end
     end
+
+    # def cart_total
+    #     prices = @cart.items_in_cart.map{|item| item.price}
+    #     total_price = sum(prices)
+    #     binding.pry
+    #     render json: total_price , status: :ok
+    # end
 
 
 

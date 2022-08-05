@@ -16,7 +16,6 @@ function ItemProvider({children}) {
             const resp = await fetch('https://amazon24.p.rapidapi.com/api/product/' + productID + '?country=US', API)
              if (resp.status === 200) {
                 const data = await resp.json() 
-                console.log(data)
                 setItem(data)
              } else {
                 setMessage({message: "No items available", color: 'red'})

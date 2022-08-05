@@ -19,15 +19,15 @@ class OrdersController < ApplicationController
         end
     end
 
-    def update
-        @order&.update!(order_params)
-        render json: find_order, status: :created
-    end
+    # def update
+    #     @order&.update!(order_params)
+    #     render json: find_order, status: :created
+    # end
 
-    def destroy
-        @order&.destroy
-        head :no_content
-    end
+    # def destroy
+    #     @order&.destroy
+    #     head :no_content
+    # end
 
 
     private

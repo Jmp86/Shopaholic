@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 
 
 const Cart = () => {
-    const {cart, getCart} = useContext(CartContext);
+    const {cart, getCart, cartTotal} = useContext(CartContext);
     const {setMessage} = useContext(MessageContext);
     const {user} = useContext(UserContext);
     const {getOrders} = useContext(OrderContext);
@@ -117,6 +117,7 @@ const Cart = () => {
         <div>
             {renderItems}
             <Link to={`/profile/` + user.id}>
+            <h3>{cartTotal}</h3>
             <Button onClick={handleOrder}>
                 Submit Order
             </Button>

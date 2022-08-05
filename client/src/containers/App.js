@@ -18,7 +18,7 @@ import ItemProfile from '../components/ItemProfile'
 
 
 function App() {
-  const {cart, getCart} = useContext(CartContext);
+  const {cart, cartTotal, getCart, getTotal} = useContext(CartContext);
   const {getCurrentUser} = useContext(UserContext);
   const {orders, getOrders} = useContext(OrderContext);
 
@@ -40,6 +40,14 @@ function App() {
       getOrders()
     }}
 
+  // const loadCartTotal = () => {
+  //   if (cartTotal) {
+  //     return cartTotal
+  //   } else {
+  //     getTotal()
+  //   }}
+
+  // loadCartTotal()
   loadOrders()
   loadCart()
 
