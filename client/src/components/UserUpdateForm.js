@@ -37,7 +37,6 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
             firstname: user.data.firstname,
             lastname: user.data.lastname,
             email: user.data.email,
-            password: user.data.password,
         })
     }, [user.data.firstname, user.data.lastname, user.data.email, user.data.password ])
 
@@ -59,12 +58,13 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
     })
     .then(r => r.json())
     .then(data => {
-      if (data.errors) {
-        setMessage(data.errors)
-      } else {
+        if (data.error) {
+        setMessage({message: data.error, color: "red"})
+        } else {
+        setMessage({message: "Account updated successfully!", color: "green"})
         setShowUpdateForm(false)
-        setUser(user)
-      }
+        setUserObj(userObj)
+    }
     })
   }
 
@@ -81,6 +81,7 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
       })
       setMessage({message: "Sorry to see you go!", color: "yellow"})
       history.push('/')
+      
 }
 
   return (

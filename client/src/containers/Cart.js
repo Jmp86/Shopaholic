@@ -35,12 +35,11 @@ const Cart = () => {
             })
             if (resp.status === 200) {
                 const data = await resp.json()
-                setMessage({message: "Item removed from  cart", color: "green"})
+                setMessage({message: "Item removed from cart", color: "green"})
             } else {
                 const errorObj = await resp.json()
                 setMessage({message: errorObj.error, color: "red"})
             }
-      
             } catch(e) {
                 setMessage({message: e.message, color: "red"})
             }

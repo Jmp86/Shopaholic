@@ -10,11 +10,10 @@ export default function Home() {
     <ProductHeroLayout
       sxBackground={{
         backgroundImage: `url(${HomeImg})`,
-        backgroundColor: '#7fc7d9', // Average color of the background image.
+        backgroundColor: '#7fc7d9',
         backgroundPosition: 'center',
       }}
     >
-      {/* Increase the network loading priority of the background image. */}
       <img
         style={{ display: 'none' }}
         src={HomeImg}
@@ -47,6 +46,3 @@ export default function Home() {
     </ProductHeroLayout>
   );
 }
-
-
-// https://www.itl.cat/pngfile/big/165-1655864_e-commerce-px-shopping-cart.jpg

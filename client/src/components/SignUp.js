@@ -20,7 +20,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Shopaholic
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -52,9 +52,6 @@ export default function SignUp() {
 
     const handleSubmit = e => {
       e.preventDefault()
-      // if ([userObj.firstname, userObj.lastname, userObj.email, userObj.password, userObj.password_confirmation].some(val => val.trim() === "")) {
-      //     setMessage({message: "Please fill in all information", color: "red"})
-      // }
       const newUserCreated = signup({...userObj, password_confirmation: userObj.passwordConfirmation})
       if (newUserCreated) {
           setMessage({message: "Thanks for creating an account!", color: "green"})

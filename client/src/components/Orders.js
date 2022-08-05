@@ -16,8 +16,6 @@ function preventDefault(e) {
 export default function Orders() {
   const {orders} = useContext(OrderContext);
 
-
-
   return (
     <React.Fragment>
     {console.log(orders)}
@@ -31,8 +29,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders ? orders.data.map((order) => (
-              
+          {orders ? orders.data.map((order) => (       
             <TableRow key={order.id}>
               <TableCell>{order.order_date}</TableCell>
               <TableCell>{order.id}</TableCell>

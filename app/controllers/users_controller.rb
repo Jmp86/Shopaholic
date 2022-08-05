@@ -20,13 +20,14 @@ class UsersController < ApplicationController
     def update
         user = User.find_by(id: params[:id])
         user.update!(user_params)
-        render json: user, status: :ok
+        render json: user, adapter: nil, status: :ok
     end
 
     def destroy
         user = User.find(params[:id])
         user.destroy
-        session.delete(user_id)
+        session.delete(:user_id)
+        cookies.delete(:user_id)
         head :no_content
     end
 

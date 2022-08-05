@@ -13,9 +13,6 @@ import Title from './Title';
 import {UserContext} from "../context/user"
 import {useContext, useState} from "react"
 import UserUpdateForm from './UserUpdateForm'
-
-
-
 import Orders from './Orders';
 
 function Copyright(props) {
@@ -23,16 +20,13 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Shopaholic
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
 }
-
-
-
 
 const mdTheme = createTheme();
 
@@ -62,7 +56,7 @@ function Profile() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
+              {/* User Edit */}
               <Grid item xs={12} md={12} lg={12}>
                 <Paper
                   sx={{

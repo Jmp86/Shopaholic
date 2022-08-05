@@ -20,6 +20,7 @@ class ApplicationController < ActionController::API
   def authorize
     no_route unless current_user
   end
+  
 
   # def admin?
   #     no_route unless current_user.admin == true

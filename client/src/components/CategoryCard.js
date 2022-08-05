@@ -8,13 +8,10 @@ import {ItemContext} from '../context/item'
 import {CategoryContext} from '../context/category'
 
 
-
 const CategoryCard = () => {
   const {getBestSellers} = useContext(ItemContext);
   const {categoryData} = useContext(CategoryContext);
   const history = useHistory()
-
-
 
   const handleClick = (cat) => {
     getBestSellers(cat)

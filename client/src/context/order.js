@@ -1,10 +1,7 @@
 import React, {useState, useContext, useCallback} from "react"
 import {MessageContext} from "./message"
 
-
-
 const OrderContext = React.createContext()
-
 
 function OrderProvider({children}) {
     const [orders, setOrders] = useState();

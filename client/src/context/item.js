@@ -1,15 +1,11 @@
-import React, {useState, useContext, useCallback} from "react"
-import {MessageContext} from "./message"
+import React, {useState, useCallback} from "react"
 import {API} from '../config.js';
-
 
 const ItemContext = React.createContext()
 
-
 function ItemProvider({children}) {
     const [item, setItem] = useState();
-    const [itemList, setItemList] = useState([]);
-    const {setMessage} = useContext(MessageContext)
+    const [itemList, setItemList] = useState();
 
     const getItem = useCallback(async (productID) => { 
         try {
@@ -30,11 +26,7 @@ function ItemProvider({children}) {
                 .then(r => r.json())
                 .then(data => {
                     setItemList({data})
-                   
-                // console.log(data)
             })
-        //         } catch  {
-        //     setMessage({message: "No items to display", color: "red"})
         }
 
     return (

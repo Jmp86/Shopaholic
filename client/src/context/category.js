@@ -15,8 +15,6 @@ import artsandcrafts from "../images/artsandcrafts.jpg"
 import handmade from "../images/handmade.jpg"
 
 
-
-
 const CategoryContext = React.createContext()
 
 

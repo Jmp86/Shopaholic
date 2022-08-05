@@ -1,17 +1,14 @@
 import React, {useState, useContext, useCallback} from "react"
 import {MessageContext} from "./message"
-import {useHistory} from 'react-router-dom'
+
 
 
 const UserContext = React.createContext()
 
 
 function UserProvider({children}) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState();
     const {setMessage} = useContext(MessageContext)
-
-
-    const history = useHistory()
 
     const getCurrentUser = useCallback(async () => { 
         try {

@@ -29,9 +29,6 @@ export default function ItemProfile() {
       getCart()
     }, [getCart])
 
-    console.log(updatedItem)
-    // console.log(updatedCart)
-    console.log(cart)
 
     const handleClick = () => {
     cart.data.items_in_cart.push(updatedItem)
