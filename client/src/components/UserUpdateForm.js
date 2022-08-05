@@ -15,7 +15,7 @@ import {useHistory} from 'react-router-dom'
 const theme = createTheme();
 
 const UserUpdateForm = ( {setShowUpdateForm} ) => {
-    const {user, setUser} = useContext(UserContext);
+    const {user, getCurrentUser} = useContext(UserContext);
     const {setMessage} = useContext(MessageContext);
     const history = useHistory()
     const [userObj, setUserObj] = useState({
@@ -63,7 +63,7 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
         } else {
         setMessage({message: "Account updated successfully!", color: "green"})
         setShowUpdateForm(false)
-        setUserObj(userObj)
+        getCurrentUser()
     }
     })
   }

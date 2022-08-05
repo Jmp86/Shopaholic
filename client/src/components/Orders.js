@@ -18,7 +18,6 @@ export default function Orders() {
 
   return (
     <React.Fragment>
-    {console.log(orders)}
       <Title>Recent Orders</Title>
       <Table size="small">
         <TableHead>
