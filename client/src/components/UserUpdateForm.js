@@ -106,7 +106,7 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
                   fullWidth
                   id="firstname"
                   label="First Name"
-                  value={userObj.firstname}
+                  value={userObj.firstname || ''}
                   onChange={handleChange}
                   // autoFocus
                 />
@@ -118,7 +118,7 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
                   id="lastname"
                   label="Last Name"
                   name="lastname"
-                  value={userObj.lastname}
+                  value={userObj.lastname || ''}
                   onChange={handleChange}
                   autoComplete="lastname"
                 />
@@ -130,7 +130,7 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
                   id="email"
                   label="Email Address"
                   name="email"
-                  value={userObj.email}
+                  value={userObj.email || ''}
                   onChange={handleChange}
                   autoComplete="email"
                 />
@@ -143,7 +143,7 @@ const UserUpdateForm = ( {setShowUpdateForm} ) => {
                   label="Password"
                   type="password"
                   id="password"
-                  value={userObj.password}
+                  value={userObj.password || ''}
                   onChange={handleChange}
                   autoComplete="new-password"
                 />
