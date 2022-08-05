@@ -1,6 +1,6 @@
 import '../App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import {UserContext} from '../context/user';
 import {CartContext} from '../context/cart';
 import {OrderContext} from '../context/order';
@@ -18,7 +18,6 @@ import ItemProfile from '../components/ItemProfile'
 
 
 function App() {
-  const [isLoading, setLoading] = useState(true);
   const {cart, getCart} = useContext(CartContext);
   const {getCurrentUser} = useContext(UserContext);
   const {orders, getOrders} = useContext(OrderContext);
@@ -51,7 +50,7 @@ function App() {
         <Navigation />
         <Switch>
         <Route path="/item/:id">
-            <ItemProfile setLoading={setLoading} isLoading={isLoading}/>
+            <ItemProfile/>
           </Route>
         <Route path="/cart/:id">
             <Cart />
@@ -60,7 +59,7 @@ function App() {
             <Profile />
           </Route>
           <Route path="/category/:category">
-            <ShopItems setLoading={setLoading} isLoading={isLoading}/>
+            <ShopItems/>
           </Route>
         <Route path="/shop">
             <ShopByCategory />
@@ -83,7 +82,7 @@ function App() {
   );
 }
 
-// {/* <Route index path='/orders' element={<Home/>}/>
+
 // <Route index path='/orders/:id' element={<Home/>}/> */}
 export default App;
 

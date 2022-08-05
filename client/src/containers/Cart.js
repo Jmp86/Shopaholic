@@ -3,6 +3,7 @@ import {CartContext} from '../context/cart';
 import {useContext, useEffect} from 'react';
 import {MessageContext} from "../context/message";
 import {UserContext} from '../context/user'
+import {OrderContext} from '../context/order'
 import Button from '../components/Button'
 import {Link} from 'react-router-dom'
 
@@ -11,6 +12,7 @@ const Cart = () => {
     const {cart, getCart} = useContext(CartContext);
     const {setMessage} = useContext(MessageContext);
     const {user} = useContext(UserContext);
+    const {getOrders} = useContext(OrderContext);
 
 
     useEffect(() => {
@@ -68,7 +70,7 @@ const Cart = () => {
             })
             if (resp.status === 201) {
                 const data = await resp.json()
-                console.log(data)
+                getOrders()
                 setMessage({message: "Order Received!", color: "green"})
             } else {
                 const errorObj = await resp.json()

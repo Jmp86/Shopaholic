@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
     # skip_before_action :admin?, only: [:index, :show, :create]
+
     before_action :find_order, only: [:show, :update, :destroy]
 
     def index
@@ -11,8 +12,11 @@ class OrdersController < ApplicationController
     end
 
     def create
-        order = @current_user.orders.create!(order_params)
-        render json: order, status: :created
+        @order = @current_user.orders.create!(order_params)
+        if @order.save
+            ConfirmationMailer.send_order_email(@current_user).deliver_now
+            render json: @order, status: :created
+        end
     end
 
     def update
