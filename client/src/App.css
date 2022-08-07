@@ -55,3 +55,30 @@
   display: inline-block;
   }
 
+  button:hover {
+    background-color: whitesmoke;
+    border: black solid 1px;
+    color: black;
+  } 
+
+  .delete {
+    position: relative;
+    background-color: #000000;
+    border: 1px; 
+    border-radius: 5px; 
+    height: 30px;
+    width: max-content;
+    color: whitesmoke;
+    font-size: 20px;
+    justify-self: center;
+    margin: 1rem;
+  }
+
+  .submit:hover {
+    background:#e6eaee;
+    color:rgb(0, 0, 0);
+    border:1pxsolid#eee;
+    border-radius:5px;
+    box-shadow:5px5px5px#eee;
+    text-shadow:none;
+  }

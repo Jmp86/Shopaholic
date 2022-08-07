@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
     # skip_before_action :admin?, only: [:index, :show, :create]
 
-    before_action :find_order, only: [:show, :update, :destroy]
+    before_action :find_order, only: [:show, :update, :destroy, :order_total]
 
     def index
         render json: @current_user.orders
@@ -28,6 +28,9 @@ class OrdersController < ApplicationController
     #     @order&.destroy
     #     head :no_content
     # end
+    def order_total
+        @order.items_in_cart.to_a.sum{|item| item.price}
+    end
 
 
     private

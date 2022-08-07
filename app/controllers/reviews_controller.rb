@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
     end
 
     def update
-        if current_user.reviews.include?(@review)
+        if @current_user.reviews.include?(@review)
             @review&.update!(review_params)
             render json: @review
         else
@@ -31,9 +31,9 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
-        if current_user.reviews.include?(@review)
+        if @current_user.reviews.include?(@review)
             if @review&.destroy
-                render json: {message: "Successfully destroyed review!"}
+                render json: {message: "Successfully deleted review!"}
             else
                 render json: {error: @review.errors.full_messages.to_sentence}
             end

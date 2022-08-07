@@ -24,7 +24,7 @@ export default function Orders() {
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Order Number</TableCell>
-            {/* <TableCell align="right">Total</TableCell> */}
+            <TableCell align="right">Total</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -32,7 +32,7 @@ export default function Orders() {
             <TableRow key={order.id}>
               <TableCell>{order.order_date}</TableCell>
               <TableCell>{order.id}</TableCell>
-              {/* <TableCell align="right">{`$${order.order_amount}`}</TableCell> */}
+              <TableCell align="right">{`$${order.order_amount}`}</TableCell>
             </TableRow>
           )) : []}
         </TableBody>

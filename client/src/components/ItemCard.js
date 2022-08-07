@@ -11,8 +11,12 @@ import {useContext} from 'react';
 
 
 const ItemCard = ({item}) => {
-  const {getItem} = useContext(ItemContext)
+  const {getItem, createItem} = useContext(ItemContext)
   const history = useHistory()
+
+  const addItemToDb = () => {
+    createItem(item)
+  }
 
     const handleClick = () => {
     getItem(item.product_id)  
@@ -20,7 +24,9 @@ const ItemCard = ({item}) => {
       pathname: "/item/" + item.product_id,
       state: {detail: item}
     });
+    addItemToDb() 
 }
+
 
   // const index = item.reviews.search(/[0-9]/);
   // const firstNum = Number(item.reviews[index]);

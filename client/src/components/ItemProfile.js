@@ -8,17 +8,25 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {MessageContext} from '../context/message'
 import {UserContext} from '../context/user'
 import {CartContext} from '../context/cart'
+import {ReviewContext} from '../context/review'
 // import BasicRating from './BasicRating';
-import {useLocation} from 'react-router-dom'
+import {useLocation, useParams, useHistory} from 'react-router-dom'
+import ReviewCard from './ReviewCard'
+import ReviewForm from './ReviewForm'
 
 const theme = createTheme();
 
 export default function ItemProfile() {
     const {setMessage} = useContext(MessageContext);
     const {user} = useContext(UserContext);
+    const {reviews, getReviews} = useContext(ReviewContext);
     const {cart, getCart} = useContext(CartContext);
-    const location = useLocation()
+    const location = useLocation();
+    const history = useHistory();
+    const {id} = useParams();
+    const [showReviewForm, setShowReviewForm] = useState(false);
     const [updatedItem] = useState({
+      product_id: location.state.detail.product_id,
       name: location.state.detail.product_title,
       image: location.state.detail.product_main_image_url,
       price: location.state.detail.app_sale_range.min,
@@ -29,6 +37,17 @@ export default function ItemProfile() {
       getCart()
     }, [getCart])
 
+    const loadReviews = () => {
+      if (reviews) {
+        return reviews
+       } else {
+         getReviews()
+         console.log(reviews)
+    }}
+  
+    loadReviews()
+
+    // console.log(reviews)
 
     const handleClick = () => {
     cart.data.items_in_cart.push(updatedItem)
@@ -48,6 +67,7 @@ export default function ItemProfile() {
       if (resp.status === 200) {
           const data = await resp.json()
           setMessage({message: "Item added to cart", color: "green"})
+          history.push('/shop')
       } else {
           const errorObj = await resp.json()
           setMessage({message: errorObj.error, color: "red"})
@@ -101,6 +121,13 @@ return (
               >
                 Add to cart
               </Button>
+            </Box>
+            <Box>
+            {showReviewForm ? <ReviewForm  key={id} id={id} setShowReviewForm={setShowReviewForm}/> : <button className="reviewButton" onClick={(e) => setShowReviewForm(true)}>Review This Product</button>}
+            </Box>
+            <Box>
+              {console.log(reviews)}
+              {/* {reviews ? reviews.data.map(review => <ReviewCard review={review}/>)  : null} */}
             </Box>
           </Box>
         </Grid>

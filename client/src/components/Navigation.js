@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-// import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import {CartOutline} from 'mdi-material-ui'
 import {NavLink} from 'react-router-dom'
 import {UserContext} from "../context/user"
@@ -38,15 +38,15 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
-// const SearchIconWrapper = styled('div')(({ theme }) => ({
-//   padding: theme.spacing(0, 2),
-//   height: '100%',
-//   position: 'absolute',
-//   pointerEvents: 'none',
-//   display: 'flex',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-// }));
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -159,11 +159,7 @@ export default function Navigation() {
                         >Sign Up</NavLink>
                     </>
                 )}
-
-
-
-
-          {/* <Search>
+          <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -171,7 +167,7 @@ export default function Navigation() {
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
-          </Search> */}
+          </Search>
         </Toolbar>
       </AppBar>
     </Box>

@@ -3,5 +3,5 @@ class Order < ApplicationRecord
     has_many :items
 
     # validates :items_ordered, presence: true
-    serialize :items_ordered, Array
+    # serialize :items_ordered, Array
 end

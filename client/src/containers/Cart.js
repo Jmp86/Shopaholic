@@ -14,7 +14,7 @@ const Cart = () => {
     const {setMessage} = useContext(MessageContext);
     const {user} = useContext(UserContext);
     const {getOrders} = useContext(OrderContext);
-    const {createItem} = useContext(ItemContext);
+    const {setOrderedItems} = useContext(ItemContext);
 
 
     useEffect(() => {
@@ -56,7 +56,6 @@ const Cart = () => {
         const timeElapsed = Date.now();
         const today = new Date(timeElapsed);
 
-
         const placeOrder = async () => {
             try {
               const resp = await fetch(`/api/v1/orders`, {
@@ -73,7 +72,7 @@ const Cart = () => {
             if (resp.status === 201) {
                 const data = await resp.json()
                 getOrders()
-                createItem(data)
+                setOrderedItems(data)
                 setMessage({message: "Order Received!", color: "green"})
             } else {
                 const errorObj = await resp.json()

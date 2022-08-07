@@ -3,21 +3,16 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 
-export default function CartItemCard({item, handleDelete, index}) {
+export default function ReviewCard({review}) {
 
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start" key={item.id}>
-        <ListItemAvatar>
-          <Avatar alt={item.name} src={item.image} />
-        </ListItemAvatar>
+      <ListItem alignItems="flex-start" key={review.id}>
         <ListItemText
-          primary={item.name}
+          primary={review.review}
           secondary={
             <React.Fragment>
               <Typography
@@ -26,14 +21,14 @@ export default function CartItemCard({item, handleDelete, index}) {
                 variant="body2"
                 color="text.primary"
               >
-                ${item.price}
+                ${review.rating}
               </Typography>
             </React.Fragment>
           }
         />
       </ListItem>
       <Divider variant="inset" component="li" />
-      <button className="delete" onClick={() => handleDelete(index)}>Remove</button>
+      {/* <button onClick={() => handleDelete(index)}>Remove</button> */}
     </List>
 
   );
