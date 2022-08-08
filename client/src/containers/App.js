@@ -4,6 +4,7 @@ import React, { useEffect, useContext } from "react";
 import {UserContext} from '../context/user';
 import {CartContext} from '../context/cart';
 import {OrderContext} from '../context/order';
+import {ReviewContext} from '../context/review';
 import Home from '../components/Home';
 import ShopByCategory from '../containers/ShopByCategory';
 import Navigation from '../components/Navigation';
@@ -21,6 +22,7 @@ function App() {
   const {cart, cartTotal, getCart, getTotal} = useContext(CartContext);
   const {getCurrentUser} = useContext(UserContext);
   const {orders, getOrders} = useContext(OrderContext);
+  const {reviews, getReviews} = useContext(ReviewContext);
 
   useEffect(() => {
     getCurrentUser()
@@ -40,6 +42,13 @@ function App() {
       getOrders()
     }}
 
+    const loadReviews = () => {
+      if (reviews) {
+        return reviews
+      } else {
+        getReviews()
+      }}
+
   // const loadCartTotal = () => {
   //   if (cartTotal) {
   //     return cartTotal
@@ -50,6 +59,7 @@ function App() {
   // loadCartTotal()
   loadOrders()
   loadCart()
+  loadReviews()
 
   return (
     <div className='App'>

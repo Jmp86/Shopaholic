@@ -13,11 +13,11 @@ export default function Orders() {
   const {orders} = useContext(OrderContext);
   const [orderTotal, setOrderTotal] = useState()
 
-  useEffect(() => {
-    fetch(`/api/v1/orders/${id}/order_total`)
-    .then((r) => r.json())
-    .then(total => setOrderTotal(total)); 
-    }, [id]);
+  // useEffect(() => {
+  //   fetch(`/api/v1/orders/${id}/order_total`)
+  //   .then((r) => r.json())
+  //   .then(total => setOrderTotal(total)); 
+  //   }, [id]);
 
   return (
     <React.Fragment>
@@ -25,17 +25,17 @@ export default function Orders() {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
             <TableCell>Order Number</TableCell>
+            <TableCell>Date</TableCell>
             <TableCell align="right">Total</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {orders ? orders.data.map((order) => (       
             <TableRow key={order.id}>
-              <TableCell>{order.order_date}</TableCell>
               <TableCell>{order.id}</TableCell>
-              <TableCell align="right">{`$${orderTotal}`}</TableCell>
+              <TableCell>{order.order_date}</TableCell>
+              {/* <TableCell align="right">{`$${orderTotal}`}</TableCell> */}
             </TableRow>
           )) : []}
         </TableBody>

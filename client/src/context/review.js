@@ -1,6 +1,6 @@
 import React, {useState, useContext, useCallback} from "react"
 import {MessageContext} from "./message"
-import {ItemContext} from './item';
+import {UserContext} from './user';
 
 
 const ReviewContext = React.createContext()
@@ -8,22 +8,21 @@ const ReviewContext = React.createContext()
 
 function ReviewProvider({children}) {
     const [reviews, setReviews] = useState();
-    const {item} = useContext(ItemContext)
+    const {user} = useContext(UserContext)
     const {setMessage} = useContext(MessageContext)
 
     const getReviews = useCallback(async (id) => {
-        if (item) {
+        if (user) {
         try {
-            const resp = await fetch('/api/v1/reviews/'+ id)
+            const resp = await fetch('/api/v1/reviews/')
              if (resp.status === 200) {
                 const data = await resp.json() 
                 setReviews({data})
-                console.log(data)
              } 
         } catch (e) {
             setMessage({message: "No reviews to display", color: "red"})
         }}
-    }, [setMessage, item])
+    }, [setMessage, user])
 
 
 

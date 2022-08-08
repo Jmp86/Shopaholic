@@ -4,12 +4,8 @@ class ReviewsController < ApplicationController
     before_action :find_review, only: [:show, :update, :destroy]
 
     def index
-        if params[:item_id]
-            item = Item.find(params[:item_id])
-            render json: item.reviews
-        else
-            no_route
-        end
+        reviews = @current_user.reviews
+        render json: reviews, status: :ok
     end
 
     def show

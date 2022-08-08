@@ -11,7 +11,8 @@ import Link from '@mui/material/Link';
 import { PencilOutline } from 'mdi-material-ui'
 import Title from './Title';
 import {UserContext} from "../context/user"
-import {useContext, useState} from "react"
+import {ReviewContext} from "../context/review"
+import {useContext, useState, useEffect} from "react"
 import UserUpdateForm from './UserUpdateForm'
 import Orders from './Orders';
 import ReviewCard from './ReviewCard'
@@ -30,14 +31,24 @@ function Copyright(props) {
   );
 }
 
+
+
 const mdTheme = createTheme();
 
 function Profile() {
-    const {user} = useContext(UserContext)
-    const [showUpdateForm, setShowUpdateForm] = useState(false)
+    const {user} = useContext(UserContext);
+    const {reviews, setReviews} = useContext(ReviewContext);
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
+
+    // useEffect(() => {
+    //   fetch(`/api/v1/reviews`)
+    //   .then((r) => r.json())
+    //   .then(data => setReviews(data)); 
+    //   }, [setReviews]);
 
     const handleDelete = (id, index) => {
-      user.data.reviews.splice(index, 1)
+      reviews.data.splice(index, 1)
+      console.log(reviews)
       fetch(`/api/v1/reviews/${id}`, {
           method: "DELETE",
           headers: {
@@ -95,7 +106,7 @@ function Profile() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                 {user ? user.data.reviews.map((review, index) => <ReviewCard key={review.id} review={review} index={index} handleDelete={handleDelete}/>) : null}
+                 {reviews ? reviews.data.map((review, index) => <ReviewCard key={review.id} review={review} index={index} handleDelete={handleDelete}/>) : null}
                 </Paper>
               </Grid>
             </Grid>

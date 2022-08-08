@@ -27,12 +27,10 @@ function ItemProvider({children}) {
         }
     }, [setMessage])
 
-    const getBestSellers = (category) => { 
- 
+    const getBestSellers = (category) => {  
            fetch(`/api/v1/category/${category}`)
                 .then(r => r.json())
                 .then(data => {
-                    console.log(data)
                     setItemList({data})
             })
         }
@@ -55,7 +53,6 @@ function ItemProvider({children}) {
             })
             if (resp.status === 201) {
                 const data = await resp.json()
-                console.log(data)
             } else {
                 const errorObj = await resp.json()
                 setMessage({message: errorObj.error, color: "red"})

@@ -4,7 +4,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :orders
   has_many :reviews, dependent: :destroy
   has_one :cart, dependent: :destroy
-  has_many :items, through: :orders
+  has_many :items, through: :reviews
 
 
 end

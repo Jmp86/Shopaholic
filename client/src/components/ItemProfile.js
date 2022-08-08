@@ -48,8 +48,6 @@ export default function ItemProfile() {
         ...updatedItem,
         reviews: [...updatedItem.reviews, review]
         })
-
-      console.log(updatedItem)
     }
 
     const handleClick = () => {
