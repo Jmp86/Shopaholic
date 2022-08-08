@@ -10,11 +10,12 @@ import {CategoryContext} from '../context/category'
 
 const CategoryCard = () => {
   const {getBestSellers} = useContext(ItemContext);
-  const {categoryData} = useContext(CategoryContext);
+  const {categoryData, setCategory} = useContext(CategoryContext);
   const history = useHistory()
 
   const handleClick = (cat) => {
     getBestSellers(cat)
+    setCategory(cat)
     history.push('/category/' + cat)
   }
 

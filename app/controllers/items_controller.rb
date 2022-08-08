@@ -3,17 +3,29 @@ class ItemsController < ApplicationController
     # skip_before_action :admin?, only: [:index, :show]
 
     def index
-        render json: Item.all
+            items = Item.all
+            render json: items
     end
 
     def show
-        item = Item.find(params[:product_id])
+        item = Item.find(params[:id])
         render json: item
     end
 
     def create
         item = Item.create!(item_params)
         render json: item, status: :created
+    end
+
+    def items_by_category
+        items = Item.where(category: params[:id])
+        render json: items
+    end
+
+    def average_rating
+        item = Item.find(params[:id])
+        average = item.reviews.average(:rating)
+        render json: average  
     end
 
     # def update
@@ -37,6 +49,6 @@ class ItemsController < ApplicationController
     private
 
     def item_params
-        params.require(:item).permit(:item_name, :image, :price, :order_id, :rating, :product_id)
+        params.require(:item).permit(:item_name, :image, :price, :order_id, :rating, :category)
     end
 end

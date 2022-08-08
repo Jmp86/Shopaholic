@@ -5,7 +5,7 @@ import {ItemContext} from "../context/item";
 const ShopItems = () => {
     const {itemList} = useContext(ItemContext);
 
-    const renderItems = itemList.data?.map(item => <ItemCard key={item.product_title} item={item}/> )
+    const renderItems = itemList.data?.map(item => <ItemCard key={item.id} item={item}/> )
     
 
     return !itemList ? (

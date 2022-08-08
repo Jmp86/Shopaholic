@@ -2,17 +2,18 @@ import React, { useState, useContext } from "react";
 import {MessageContext} from '../context/message'
 import {ReviewContext} from '../context/review'
 import {ItemContext} from '../context/item'
+import HoverRating from './HoverRating'
 
 
 
-const ReviewForm = ( {setShowReviewForm, id} ) => {
+const ReviewForm = ( {setShowReviewForm, getNewReview} ) => {
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState();
   const {setMessage} = useContext(MessageContext);
   const {reviews} = useContext(ReviewContext);
   const {item} = useContext(ItemContext);
 
-  console.log(item)
+
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/api/v1/reviews", {
@@ -23,14 +24,19 @@ const ReviewForm = ( {setShowReviewForm, id} ) => {
       body: JSON.stringify({
         review,
         rating,
-        item_id: item.data.id
+        item_id: item.id
       }),
     })
     .then(r => r.json())
-    .then(data => console.log(data))
+    .then(data => getNewReview(data))
      setShowReviewForm(false)
   }
-    // reviews.data.push(data)
+
+
+  const getStarValue = (value) => {
+    setRating(value)
+  }
+
   return (
           <div className="reviewForm">
             <form className="tile" onSubmit={handleSubmit}>
@@ -39,7 +45,7 @@ const ReviewForm = ( {setShowReviewForm, id} ) => {
                 <textarea type="text" name="review" value={review} onChange={(e) => setReview(e.target.value)}/>
                 <br/>
                 <label>Rate This Product:</label><br/>
-      
+                <HoverRating name={rating} value={rating} getStarValue={getStarValue} onClick={(e) => setRating(e.target.value)}/>
                 <br/>
                 <input className="submit" type="submit"/>
             </form>

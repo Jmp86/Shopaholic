@@ -8,8 +8,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {MessageContext} from '../context/message'
 import {UserContext} from '../context/user'
 import {CartContext} from '../context/cart'
-import {ReviewContext} from '../context/review'
-// import BasicRating from './BasicRating';
+import {CategoryContext} from '../context/category'
+import {ItemContext} from '../context/item'
+import BasicRating from './BasicRating';
 import {useLocation, useParams, useHistory} from 'react-router-dom'
 import ReviewCard from './ReviewCard'
 import ReviewForm from './ReviewForm'
@@ -19,38 +20,40 @@ const theme = createTheme();
 export default function ItemProfile() {
     const {setMessage} = useContext(MessageContext);
     const {user} = useContext(UserContext);
-    const {reviews, getReviews} = useContext(ReviewContext);
-    const {cart, getCart} = useContext(CartContext);
+    const {item} = useContext(ItemContext);
+    const {category} = useContext(CategoryContext);
+    const {cart} = useContext(CartContext);
     const location = useLocation();
     const history = useHistory();
     const {id} = useParams();
     const [showReviewForm, setShowReviewForm] = useState(false);
-    const [updatedItem] = useState({
-      product_id: location.state.detail.product_id,
-      name: location.state.detail.product_title,
-      image: location.state.detail.product_main_image_url,
-      price: location.state.detail.app_sale_range.min,
-      rating: ""
+    const [average, setAverage] = useState(0)
+    const [updatedItem, setUpdatedItem] = useState({
+      name: location.state.detail.item_name,
+      image: location.state.detail.image,
+      price: location.state.detail.price,
+      rating: location.state.detail.rating,
+      category: location.state.detail.category,
+      reviews: location.state.detail.reviews
   });
 
-    useEffect(() => {
-      getCart()
-    }, [getCart])
+  useEffect(() => {
+    fetch(`/api/v1/items/${id}/average`)
+    .then((r) => r.json())
+    .then(average => setAverage(average)); 
+    }, [id]);
 
-    const loadReviews = () => {
-      if (reviews) {
-        return reviews
-       } else {
-         getReviews()
-         console.log(reviews)
-    }}
-  
-    loadReviews()
+    const getNewReview = (review) => {
+      setUpdatedItem({
+        ...updatedItem,
+        reviews: [...updatedItem.reviews, review]
+        })
 
-    // console.log(reviews)
+      console.log(updatedItem)
+    }
 
     const handleClick = () => {
-    cart.data.items_in_cart.push(updatedItem)
+      cart.data.items_in_cart.push(item)
 
      const addItemToCart = async () => {
       try {
@@ -67,7 +70,7 @@ export default function ItemProfile() {
       if (resp.status === 200) {
           const data = await resp.json()
           setMessage({message: "Item added to cart", color: "green"})
-          history.push('/shop')
+          history.push(`/category/${category}`)
       } else {
           const errorObj = await resp.json()
           setMessage({message: errorObj.error, color: "red"})
@@ -109,10 +112,11 @@ return (
               alignItems: 'center',
             }}
           >
-            <h2>{updatedItem.name}</h2>  
+            <h2>{updatedItem.name}</h2><br/>
+            <BasicRating value={parseFloat(average)}/> 
             <Box component="form" sx={{ mt: 1 }}>
               <h2>${updatedItem.price}</h2> 
-              {/* <BasicRating value={firstNum}/> */}
+              
               <Button
                 onClick={handleClick}
                 fullWidth
@@ -123,11 +127,10 @@ return (
               </Button>
             </Box>
             <Box>
-            {showReviewForm ? <ReviewForm  key={id} id={id} setShowReviewForm={setShowReviewForm}/> : <button className="reviewButton" onClick={(e) => setShowReviewForm(true)}>Review This Product</button>}
+            {showReviewForm ? <ReviewForm  key={id} getNewReview={getNewReview} setShowReviewForm={setShowReviewForm}/> : <button className="reviewButton" onClick={(e) => setShowReviewForm(true)}>Review This Product</button>}
             </Box>
             <Box>
-              {console.log(reviews)}
-              {/* {reviews ? reviews.data.map(review => <ReviewCard review={review}/>)  : null} */}
+              {updatedItem.reviews ? updatedItem.reviews.map(review => <ReviewCard key={review.id} review={review}/>)  : null}
             </Box>
           </Box>
         </Grid>

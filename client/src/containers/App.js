@@ -57,7 +57,7 @@ function App() {
         <Notification/>
         <Navigation />
         <Switch>
-        <Route path="/item/:id">
+        <Route path="/items/:id">
             <ItemProfile/>
           </Route>
         <Route path="/cart/:id">

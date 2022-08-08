@@ -12,12 +12,12 @@ export default function CartItemCard({item, handleDelete, index}) {
 
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="flex-start" key={item.id}>
+      <ListItem alignItems="center" key={item.id}>
         <ListItemAvatar>
-          <Avatar alt={item.name} src={item.image} />
+          <Avatar alt={item.item_name} src={item.image} />
         </ListItemAvatar>
         <ListItemText
-          primary={item.name}
+          primary={item.item_name}
           secondary={
             <React.Fragment>
               <Typography

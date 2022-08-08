@@ -9,14 +9,13 @@ const ItemContext = React.createContext()
 function ItemProvider({children}) {
     const [item, setItem] = useState();
     const [itemList, setItemList] = useState([]);
-    const [savedItem, setSavedItem] = useState()
     const [orderedItems, setOrderedItems] = useState([]);
     const [reorderList, setReorderList] = useState([]);
     const {setMessage} = useContext(MessageContext);
 
-    const getItem = useCallback(async (productID) => { 
+    const getItem = useCallback(async (id) => { 
         try {
-            const resp = await fetch('https://amazon24.p.rapidapi.com/api/product/' + productID + '?country=US', API)
+            const resp = await fetch(`/api/v1/items/${id}`)
              if (resp.status === 200) {
                 const data = await resp.json() 
                 setItem(data)
@@ -28,25 +27,12 @@ function ItemProvider({children}) {
         }
     }, [setMessage])
 
-    const getSavedItem = useCallback(async (id) => { 
-        try {
-            const resp = await fetch(`/api/v1/items/${id}`)
-             if (resp.status === 200) {
-                const data = await resp.json() 
-                setSavedItem(data)
-             } else {
-                setMessage({message: "No items available", color: 'red'})
-             }
-        } catch (e) {
-           
-        }
-    }, [setMessage])
-
     const getBestSellers = (category) => { 
  
-           fetch('https://amazon24.p.rapidapi.com/api/bsr/' + category + '?page=1', API)
+           fetch(`/api/v1/category/${category}`)
                 .then(r => r.json())
                 .then(data => {
+                    console.log(data)
                     setItemList({data})
             })
         }
@@ -60,16 +46,16 @@ function ItemProvider({children}) {
                     "Accept": "application/json"
                 },
                 body: JSON.stringify({
-                    "product_id": newItem.product_id,
-                    "item_name": newItem.product_title,
-                    "image": newItem.product_main_image_url,
-                    "price": newItem.app_sale_range.min,
+                    "category": newItem.category,
+                    "item_name": newItem.name,
+                    "image": newItem.image,
+                    "price": newItem.price,
                     "rating": newItem.rating
                 })
             })
             if (resp.status === 201) {
                 const data = await resp.json()
-                setItem(data)
+                console.log(data)
             } else {
                 const errorObj = await resp.json()
                 setMessage({message: errorObj.error, color: "red"})
@@ -81,7 +67,7 @@ function ItemProvider({children}) {
     }
 
     return (
-        <ItemContext.Provider value={{item, itemList, setItem, setItemList, getItem, getBestSellers, createItem, orderedItems, setOrderedItems, savedItem, setSavedItem, getSavedItem}}>
+        <ItemContext.Provider value={{item, itemList, setItem, setItemList, getItem, getBestSellers, createItem, orderedItems, setOrderedItems}}>
             {children}
         </ItemContext.Provider>
     )

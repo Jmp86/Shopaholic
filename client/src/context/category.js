@@ -13,12 +13,14 @@ import toysandgames from "../images/toysandgames.jpg"
 import videogames from "../images/videogames.jpg"
 import artsandcrafts from "../images/artsandcrafts.jpg"
 import handmade from "../images/handmade.jpg"
+import {useState} from "react"
 
 
 const CategoryContext = React.createContext()
 
 
 function CategoryProvider({children}) {
+  const [category, setCategory] = useState("")
 
 
     const categoryData = [
@@ -109,7 +111,7 @@ function CategoryProvider({children}) {
       ];
 
     return (
-        <CategoryContext.Provider value={{categoryData}}>
+        <CategoryContext.Provider value={{categoryData, category, setCategory}}>
             {children}
         </CategoryContext.Provider>
     )

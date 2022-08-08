@@ -11,10 +11,10 @@ function ReviewProvider({children}) {
     const {item} = useContext(ItemContext)
     const {setMessage} = useContext(MessageContext)
 
-    const getReviews = useCallback(async () => {
+    const getReviews = useCallback(async (id) => {
         if (item) {
         try {
-            const resp = await fetch('/api/v1/reviews')
+            const resp = await fetch('/api/v1/reviews/'+ id)
              if (resp.status === 200) {
                 const data = await resp.json() 
                 setReviews({data})

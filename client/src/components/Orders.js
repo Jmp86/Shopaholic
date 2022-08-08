@@ -1,6 +1,6 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {OrderContext} from '../context/order'
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,12 +9,15 @@ import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 
 
-function preventDefault(e) {
-  e.preventDefault();
-}
-
 export default function Orders() {
   const {orders} = useContext(OrderContext);
+  const [orderTotal, setOrderTotal] = useState()
+
+  useEffect(() => {
+    fetch(`/api/v1/orders/${id}/order_total`)
+    .then((r) => r.json())
+    .then(total => setOrderTotal(total)); 
+    }, [id]);
 
   return (
     <React.Fragment>
@@ -32,7 +35,7 @@ export default function Orders() {
             <TableRow key={order.id}>
               <TableCell>{order.order_date}</TableCell>
               <TableCell>{order.id}</TableCell>
-              <TableCell align="right">{`$${order.order_amount}`}</TableCell>
+              <TableCell align="right">{`$${orderTotal}`}</TableCell>
             </TableRow>
           )) : []}
         </TableBody>

@@ -7,29 +7,21 @@ import { CardActionArea } from '@mui/material';
 import {useHistory} from 'react-router-dom'
 import {ItemContext} from '../context/item'
 import {useContext} from 'react';
-// import BasicRating from './BasicRating'
 
 
 const ItemCard = ({item}) => {
-  const {getItem, createItem} = useContext(ItemContext)
+  const {getItem} = useContext(ItemContext)
   const history = useHistory()
 
-  const addItemToDb = () => {
-    createItem(item)
-  }
 
     const handleClick = () => {
-    getItem(item.product_id)  
+    getItem(item.id)  
     history.push({
-      pathname: "/item/" + item.product_id,
+      pathname: "/items/" + item.id,
       state: {detail: item}
     });
-    addItemToDb() 
 }
 
-
-  // const index = item.reviews.search(/[0-9]/);
-  // const firstNum = Number(item.reviews[index]);
 
     return (
       
@@ -38,19 +30,19 @@ const ItemCard = ({item}) => {
           <CardMedia
             component="img"
             height="250"
-            image={item.product_main_image_url}
+            image={item.image}
             alt="random img"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {item.product_name}
+            <Typography gutterBottom variant="span" component="span">
+            {item.item_name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {item.product_title}
+            <Typography variant="span" color="text.secondary">
+            
             </Typography>
           </CardContent>
         </CardActionArea>
-        <h4>${item.app_sale_range.min}</h4>
+        <h4>${item.price}</h4>
       </Card>
     );
 }

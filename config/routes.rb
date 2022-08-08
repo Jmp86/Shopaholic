@@ -8,7 +8,10 @@ Rails.application.routes.draw do
       delete "/logout", to: "sessions#destroy"
       post "/cart/new", to: "carts#create"
       get "/carts/:id/cart_total", to: "carts#cart_total"
-      
+      get "/orders/:id/order_total", to: "orders#order_total"
+      get "/category/:id", to: "items#items_by_category"
+      get "/items/:id/average", to: "items#average_rating"
+
       resources :users, only: [:update, :destroy]
       resources :items
       resources :carts

@@ -13,7 +13,8 @@ class ReviewsController < ApplicationController
     end
 
     def show
-        render json: find_review
+        reviews = reviews.where(item_id: params[:id])
+        render json: reviews
     end
     
     def create
