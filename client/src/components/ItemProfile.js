@@ -80,7 +80,7 @@ export default function ItemProfile() {
     }
   addItemToCart()
   }
-
+console.log(cart.data.items_in_cart)
 return (
 
     <ThemeProvider theme={theme}>
@@ -110,7 +110,7 @@ return (
               alignItems: 'center',
             }}
           >
-            <h2>{updatedItem.name}</h2><br/>
+            <h2>{updatedItem.item_name}</h2><br/>
             <BasicRating value={parseFloat(average)}/> 
             <Box component="form" sx={{ mt: 1 }}>
               <h2>${updatedItem.price}</h2> 

@@ -45,7 +45,7 @@ function ItemProvider({children}) {
                 },
                 body: JSON.stringify({
                     "category": newItem.category,
-                    "item_name": newItem.name,
+                    "item_name": newItem.item_name,
                     "image": newItem.image,
                     "price": newItem.price,
                     "rating": newItem.rating

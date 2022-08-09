@@ -42,7 +42,7 @@ class CartsController < ApplicationController
     end
 
     def cart_params
-        params.require(:cart).permit(:user_id, :order_date, :order_total, items_in_cart: [:name, :image, :price, :rating, :category])
+        params.require(:cart).permit(:user_id, :order_date, :order_total, items_in_cart: [:item_name, :image, :price, :rating, :category])
     end
 end
 

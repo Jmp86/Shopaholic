@@ -113,12 +113,12 @@ const Cart = () => {
         
 
     const finalItems = cart ? cart.data.items_in_cart : null
-    const renderItems = finalItems?.map((item, index) => <CartItemCard key={index} index={index} handleDelete={handleDelete} item={item}/> )
-
+    const renderItems = finalItems ? finalItems.map((item, index) => <CartItemCard key={index} index={index} handleDelete={handleDelete} item={item}/> ) : null
+    
     return (
         <div>
             {renderItems}
-            <Link to={`/profile/` + user.id}>
+            <Link to={`/profile/` + user.data.id}>
             {/* <h3>{cartTotal}</h3> */}
             <Button onClick={handleOrder}>
                 Submit Order
