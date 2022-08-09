@@ -73,6 +73,8 @@ const Cart = () => {
                 const data = await resp.json()
                 getOrders()
                 setOrderedItems(data)
+                user.data.orders.push(data)
+                // user.data.items.push(data.items_ordered.map(item => item))
                 setMessage({message: "Order Received!", color: "green"})
             } else {
                 const errorObj = await resp.json()
@@ -114,7 +116,7 @@ const Cart = () => {
 
     const finalItems = cart ? cart.data.items_in_cart : null
     const renderItems = finalItems ? finalItems.map((item, index) => <CartItemCard key={index} index={index} handleDelete={handleDelete} item={item}/> ) : null
-    
+
     return (
         <div>
             {renderItems}

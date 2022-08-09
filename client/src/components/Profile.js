@@ -100,20 +100,20 @@ function Profile() {
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 'justify-content' }}>
                  <Orders/>
                 </Paper>
               </Grid>
               {/* Reviews */}
               <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 'justify-content' }}>
                  <Title>My Reviews</Title>
                  {reviews ? reviews.data.map((review, index) => <ReviewCard key={review.id} review={review} index={index} handleDelete={handleDelete}/>) : null}
                 </Paper>
               </Grid>
                   {/* Reorder */}
                 <Grid item xs={12}>
-                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 'justify-content' }}>
                   <Title>Order Again</Title>
                   {user ? user.data.items.map(item => <ReorderItems key={item.id} item={item}/>) : null}
                 </Paper>

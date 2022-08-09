@@ -10,6 +10,7 @@ import {UserContext} from '../context/user'
 import {CartContext} from '../context/cart'
 import {CategoryContext} from '../context/category'
 import {ItemContext} from '../context/item'
+import {ReviewContext} from '../context/review'
 import BasicRating from './BasicRating';
 import {useLocation, useParams, useHistory} from 'react-router-dom'
 import ReviewCard from './ReviewCard'
@@ -23,6 +24,7 @@ export default function ItemProfile() {
     const {item} = useContext(ItemContext);
     const {category} = useContext(CategoryContext);
     const {cart} = useContext(CartContext);
+    const {reviews} = useContext(ReviewContext);
     const location = useLocation();
     const history = useHistory();
     const {id} = useParams();
@@ -44,6 +46,8 @@ export default function ItemProfile() {
     }, [id]);
 
     const getNewReview = (review) => {
+      // updatedItem.reviews.push(review)
+      reviews.data.push(review)
       setUpdatedItem({
         ...updatedItem,
         reviews: [...updatedItem.reviews, review]
@@ -80,7 +84,7 @@ export default function ItemProfile() {
     }
   addItemToCart()
   }
-console.log(cart.data.items_in_cart)
+
 return (
 
     <ThemeProvider theme={theme}>
