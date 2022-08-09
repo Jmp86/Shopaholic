@@ -16,6 +16,7 @@ import {useContext, useState, useEffect} from "react"
 import UserUpdateForm from './UserUpdateForm'
 import Orders from './Orders';
 import ReviewCard from './ReviewCard'
+import ReorderItems from './ReorderItems'
 
 
 function Copyright(props) {
@@ -103,10 +104,18 @@ function Profile() {
                  <Orders/>
                 </Paper>
               </Grid>
-              {/* Recent Orders */}
+              {/* Reviews */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                 <Title>My Reviews</Title>
                  {reviews ? reviews.data.map((review, index) => <ReviewCard key={review.id} review={review} index={index} handleDelete={handleDelete}/>) : null}
+                </Paper>
+              </Grid>
+                  {/* Reorder */}
+                <Grid item xs={12}>
+                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Title>Order Again</Title>
+                  {user ? user.data.items.map(item => <ReorderItems key={item.id} item={item}/>) : null}
                 </Paper>
               </Grid>
             </Grid>

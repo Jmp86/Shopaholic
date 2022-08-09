@@ -9,10 +9,10 @@ import Typography from '@mui/material/Typography';
 
 
 export default function CartItemCard({item, handleDelete, index}) {
-
+console.log(item)
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      <ListItem alignItems="center" key={item.id}>
+      <ListItem alignItems="flex-start" key={item.id}>
         <ListItemAvatar>
           <Avatar alt={item.item_name} src={item.image} />
         </ListItemAvatar>

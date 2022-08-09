@@ -31,7 +31,7 @@ export default function ReviewCard({review, handleDelete, index}) {
         <BasicRating value={review.rating}/><br/>
         </Typography>
         <Typography variant="body2" component="span">
-        Reviewed by {user.data.firstname}
+        Reviewed by {review.user_id}
         </Typography>
       </CardContent>
       <CardActions>

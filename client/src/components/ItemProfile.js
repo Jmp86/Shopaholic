@@ -29,7 +29,7 @@ export default function ItemProfile() {
     const [showReviewForm, setShowReviewForm] = useState(false);
     const [average, setAverage] = useState(0)
     const [updatedItem, setUpdatedItem] = useState({
-      name: location.state.detail.item_name,
+      item_name: location.state.detail.item_name,
       image: location.state.detail.image,
       price: location.state.detail.price,
       rating: location.state.detail.rating,
