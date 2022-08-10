@@ -32,6 +32,7 @@ const ReviewForm = ( {setShowReviewForm, getNewReview} ) => {
     .then(r => r.json())
     .then(data => {
         getNewReview(data)
+        user.data.reviews.push(data)
         user.data.items.push(data.item)
     })
      setShowReviewForm(false)

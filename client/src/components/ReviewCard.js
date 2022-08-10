@@ -19,8 +19,6 @@ export default function ReviewCard({review, handleDelete, index}) {
       <CardContent>
       <Typography variant="body2" component="span">
         Item Reviewed: {review.item_id}
-        {/* {console.log(review.item_id)} */}
-        {/* <Title>{review.item.item_name}</Title> */}
         </Typography><br/>
         <Typography sx={{ fontSize: 14 }} color="text.primary"component="span" gutterBottom>
         {review.review}

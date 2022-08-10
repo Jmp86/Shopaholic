@@ -108,7 +108,7 @@ function Profile() {
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 'justify-content' }}>
                  <Title>My Reviews</Title>
-                 {reviews ? reviews.data.map((review, index) => <ReviewCard key={review.id} review={review} index={index} handleDelete={handleDelete}/>) : null}
+                 {user ? user.data.reviews.map((review, index) => <ReviewCard key={review.id} review={review} index={index} handleDelete={handleDelete}/>) : null}
                 </Paper>
               </Grid>
                   {/* Reorder */}

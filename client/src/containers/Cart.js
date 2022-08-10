@@ -74,7 +74,6 @@ const Cart = () => {
                 getOrders()
                 setOrderedItems(data)
                 user.data.orders.push(data)
-                // user.data.items.push(data.items_ordered.map(item => item))
                 setMessage({message: "Order Received!", color: "green"})
             } else {
                 const errorObj = await resp.json()
