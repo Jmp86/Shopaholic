@@ -36,7 +36,8 @@ export default function ItemProfile() {
       price: location.state.detail.price,
       rating: location.state.detail.rating,
       category: location.state.detail.category,
-      reviews: location.state.detail.reviews
+      reviews: location.state.detail.reviews,
+      // reviews: location.state.detail.reviews
   });
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import {MessageContext} from '../context/message'
 import {ReviewContext} from '../context/review'
 import {ItemContext} from '../context/item'
+import {UserContext} from '../context/user'
 import HoverRating from './HoverRating'
 
 
@@ -12,6 +13,7 @@ const ReviewForm = ( {setShowReviewForm, getNewReview} ) => {
   const {setMessage} = useContext(MessageContext);
   const {reviews} = useContext(ReviewContext);
   const {item} = useContext(ItemContext);
+  const {user} = useContext(UserContext);
 
 
   function handleSubmit(e) {
@@ -28,8 +30,12 @@ const ReviewForm = ( {setShowReviewForm, getNewReview} ) => {
       }),
     })
     .then(r => r.json())
-    .then(data => getNewReview(data))
+    .then(data => {
+        getNewReview(data)
+        user.data.items.push(data.item)
+    })
      setShowReviewForm(false)
+    
   }
 
 

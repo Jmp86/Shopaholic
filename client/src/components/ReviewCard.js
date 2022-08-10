@@ -18,8 +18,10 @@ export default function ReviewCard({review, handleDelete, index}) {
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
       <Typography variant="body2" component="span">
+        Item Reviewed: {review.item_id}
+        {/* {console.log(review.item_id)} */}
         {/* <Title>{review.item.item_name}</Title> */}
-        </Typography>
+        </Typography><br/>
         <Typography sx={{ fontSize: 14 }} color="text.primary"component="span" gutterBottom>
         {review.review}
         </Typography>
@@ -30,9 +32,9 @@ export default function ReviewCard({review, handleDelete, index}) {
         Reviewed by {review.user_id}
         </Typography>
       </CardContent>
-      <CardActions>
+      {/* <CardActions>
         <Button onClick={() => handleDelete(review.id, index)} size="small">Delete Review</Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }
